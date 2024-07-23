@@ -1,0 +1,67 @@
+<div style="display:none" class="modal" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Edit User Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="toggleProfile();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="{% url 'update_user_info' %}" onsubmit="return validatePassword();">
+
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label">Username:</label>
+                        <div class="col-sm-9">
+                            <strong style="color:gray"> {{ user.username }} </strong>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label">Roles:</label>
+                        <div class="col-sm-9">
+                            <strong style="color:gray">{% for group in ugroups %} {{ group }} {% endfor %}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="first_name">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="last_name">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="email">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="new_password">Password</label>
+                        <div class="col-sm-9">
+                            <input autocomplete="new-password" type="password" class="form-control" id="new_password" name="new_password" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="retype_password">Retype Password</label>
+                        <div class="col-sm-9">
+                            <input autocomplete="new-password" type="password" class="form-control" id="retype_password" name="retype_password" value="">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="toggleProfile();">Cancel</button>
+                    <button type="submit" class="btn btn-primary" onclick="return validatePassword();">Save</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

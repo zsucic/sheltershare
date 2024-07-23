@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Victim Information</title>
+
+    <style>
+    html {
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+    }
+    td {
+      padding-left: 10px;
+    }
+</style>
+  </head>
+  <body>
+    <table >
+      {% if shelter_provider %}
+      <tr>
+        <td>Name:</td>
+        <td>****</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td>Name:</td>
+        <td>{{ victim.first_name }} {{ victim.last_name }}</td>
+      </tr>
+      {% endif %}
+      <tr>
+        <td>Gender:</td>
+        <td>{{ victim.gender }}</td>
+      </tr>
+      <tr>
+        <td>Date of Birth:</td>
+        <td>{{ victim.date_of_birth }} (age: {{ victim.age }})</td>
+      </tr>
+      <tr>
+        <td>IDENTIFIER:</td>
+        <td>{{ victim.identifier }}</td>
+      </tr>
+
+    </table>
+  </body>
+</html>

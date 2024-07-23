@@ -1,0 +1,86 @@
+<!-- Modal -->
+<div class="modal" id="shelterOfferModal" tabindex="-1" role="dialog" aria-labelledby="shelterOfferModalLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="shelterOfferModalLabel">Shelter Provider Application</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick='toggleModal("shelterOfferModal");'>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class ="victim_info"></div>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div style="display:none" class="form-group row">
+                        <label for="pv_offer_referrence" class="col-sm-3 col-form-label">Victim Request</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="pv_offer_referrence" disabled>
+                        </div>
+                    </div>
+                    <div style="display:none" class="form-group row">
+                        <label for="pv_offer_shelterprovider" class="col-sm-3 col-form-label">Shelter Provider</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="pv_offer_shelterprovider" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="shelter_request_offer_type">Shelter Request Type</label>
+                        <div class="col-sm-9">
+                            {% for shelter_request_type in shelter_request_types %}
+                            <div class="form-check" id="shelter_request_offer_type" title="{{ shelter_request_type.description }}">
+                                <input type="checkbox" class="form-check-input" name = "shelter_request_offer_type" id="shelter_request_offer_type_{{ shelter_request_type.id }}" value="{{ shelter_request_type.code }}">
+                                <label class="form-check-label" for="shelter_request_offer_type_{{ shelter_request_type.id }}">
+                                    {{ shelter_request_type.code }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="reference_number" class="col-sm-3 col-form-label">Reference Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="reference_number">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="price" class="col-sm-3 col-form-label">Price</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="price">
+                        </div>
+
+                        <label for="shelter_location" class="col-sm-3 col-form-label">Shelter Location</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="shelter_location">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="pv_offer_notes" class="col-sm-3 col-form-label">Provider Notes</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="pv_offer_notes"></textarea>
+                        </div>
+                    </div>
+<!--                    <div class="form-group row">-->
+<!--                        <label for="status" class="col-sm-3 col-form-label">Status:</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" class="form-control" id="status" disabled>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="datetimeOfOffer" class="col-sm-3 col-form-label">Date/Time of Offer:</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                           <input type="text" class="form-control" id="datetimeOfOffer" disabled>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-secondary" id="view-questions-btn" onclick='fetchQuestions();toggleModal("shelterOfferModal");toggleModal("qaModal");'>View Questions</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick='toggleModal("shelterOfferModal");'>Close</button>
+                <button id="submitOffer" type="button" class="btn btn-primary" data-dismiss="modal" onclick='submitOffer();toggleModal("shelterOfferModal");'>Submit Application</button>
+            </div>
+        </div>
+
+    </div>
+</div>

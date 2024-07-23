@@ -1,0 +1,59 @@
+<div class="modal" id="finalDischargeModal" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFormLabel">Final Discharge Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="toggleModal('finalDischargeModal');">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class ="victim_info"></div>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="victim_discharge_name">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="victim_discharge_name" disabled>
+                        </div>
+                    </div><div class="form-group row">
+                        <label class="col-sm-3 control-label" for="victim_discharge_identifier">IDENTIFIER</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="victim_discharge_identifier" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="victim_discharge_shelter_requests">Shelter Request Type</label>
+                        <div class="col-sm-9" id="victim_discharge_shelter_requests">
+                            {% for shelter_request_type in shelter_request_types %}
+                            <div class="form-check"   name = "victim_discharge_shelter_request" id="victim_discharge_shelter_request_{{ shelter_request_type.id }}" title="{{ shelter_request_type.description }}" style="display:none">
+                                <input type="checkbox" class="form-check-input" name = "victim_discharge_shelter_request_offer_type" id="victim_discharge_shelter_request_offer_type_{{ shelter_request_type.id }}" value="{{ shelter_request_type.code }}" onchange="verifyFinalDischarge();">
+                                <label class="form-check-label" for="victim_discharge_shelter_request_offer_type_{{ shelter_request_type.id }}">
+                                    {{ shelter_request_type.code }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="victim_discharge_additional_shelter_requests">Additional Shelter Requests</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="victim_discharge_additional_shelter_requests" disabled></textarea>
+                        </div>
+                    </div>
+                   <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="victim_discharge_notes">Additional Shelter Requests</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="victim_discharge_notes" disabled></textarea>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="toggleModal('finalDischargeModal');">Close</button>
+                <button type="button" class="btn btn-primary" id="performFinalDischargeButton" onclick="performFinalDischarge();toggleModal('finalDischargeModal');" disabled>Verify And Save</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+[
+   {
+      "model":"shshapp.groupstatusmapping",
+      "pk":2,
+      "fields":{
+         "status":1,
+         "group":3
+      }
+   },
+   {
+      "model":"shshapp.groupstatusmapping",
+      "pk":3,
+      "fields":{
+         "status":2,
+         "group":3
+      }
+   }
+
+]

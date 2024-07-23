@@ -1,0 +1,44 @@
+<!-- Modal -->
+<div class="modal" id="viewShelterOffersModal" tabindex="-1" role="dialog" aria-labelledby="viewShelterOffersModalLabel" aria-hidden="true" style="display:none">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="
+    width: fit-content;
+    height: fit-content;
+">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewShelterOffersModalLabel">Received Shelter Provider Applications</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick='toggleModal("viewShelterOffersModal");'>
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class ="victim_info"></div>
+      </div>
+
+      <div class="modal-body">
+       <p>Requested shelters:  <strong id="requested_shelters_display"></strong></p>
+       <p>Fulfilled shelters:  <strong id="approved_shelters_display"></strong></p>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th style="white-space: nowrap;">Provider</th>
+              <th style="white-space: nowrap;">Provided Shelters</th>
+              <th style="white-space: nowrap;">Reference Number</th>
+              <th>Price</th>
+              <th>Location</th>
+              <th>Provider Notes</th>
+              <th>Status</th>
+              <th style="white-space: nowrap;">Date/Time of Offer</th>
+              <th>Accept</th>
+            </tr>
+          </thead>
+          <tbody id="viewShelterOffersTableBody">
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick='toggleModal("viewShelterOffersModal");'>Close</button>
+        <button type="button" class="btn btn-primary" id="acceptSelectedOffersButton" data-dismiss="modal" onclick='acceptSelectedOffers();toggleModal("viewShelterOffersModal");'>Accept Selected Applications</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+[
+{
+    "model": "shshapp.victimrequeststatus",
+    "pk": 1,
+    "fields": {
+        "code": "REG",
+        "description": "Registered"
+    }
+},
+{
+    "model": "shshapp.victimrequeststatus",
+    "pk": 2,
+    "fields": {
+        "code": "RFA",
+        "description": "Assessment Requested"
+    }
+},
+{
+    "model": "shshapp.victimrequeststatus",
+    "pk": 3,
+    "fields": {
+        "code": "RFO",
+        "description": "Shelter Requested"
+    }
+},
+{
+    "model": "shshapp.victimrequeststatus",
+    "pk": 4,
+    "fields": {
+        "code": "RFD",
+        "description": "Ready for Discharge"
+    }
+},
+{
+    "model": "shshapp.victimrequeststatus",
+    "pk": 6,
+    "fields": {
+        "code": "DIS",
+        "description": "Discharged"
+    }
+},
+{
+    "model": "shshapp.victimrequeststatus",
+    "pk": 7,
+    "fields": {
+        "code": "SDR",
+        "description": "Shelter Definition"
+    }
+}
+]

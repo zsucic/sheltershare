@@ -1,0 +1,39 @@
+<div class="modal" id="dischargeModal" tabindex="-1" role="dialog" aria-labelledby="dischargeModalLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dischargeModalLabel">Victim Discharge Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="toggleModal('dischargeModal');">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            <div class ="victim_info"></div>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="victim_request_id">
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="discharge_date">Discharge Date:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="discharge_date" onchange="document.getElementById('saveDischargeData').disabled=false;">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="coordinator">Coordinator:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="coordinator" onchange="document.getElementById('saveDischargeData').disabled=false;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="toggleModal('editVictimModal');toggleModal('dischargeModal');">Back</button>
+                <button type="button" class="btn btn-primary" id="saveDischargeData" onclick="updateDischargeData();" disabled>Verify And Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="toggleModal('requestExtraInfo');toggleModal('dischargeModal');">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

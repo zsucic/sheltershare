@@ -1,0 +1,50 @@
+<div class="modal" id="requestExtraInfo" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFormLabel">Victim Request Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="toggleModal('requestExtraInfo');">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            <div class ="victim_info"></div>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="notes">Notes</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="notes" onchange="document.getElementById('saveShelterData').disabled=false;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="reason_for_visit">Reason for Visit</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="reason_for_visit" onchange="document.getElementById('saveShelterData').disabled=false;">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="display:none">
+                        <label class="col-sm-3 control-label" for="status">Status</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="status" onchange="document.getElementById('saveShelterData').disabled=false;" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="date_of_visit">Date of Visit</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="date_of_visit" onchange="document.getElementById('saveShelterData').disabled=false;">
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="toggleModal('requestExtraInfo');toggleModal('dischargeModal');">Back</button>
+                <button type="button" class="btn btn-primary" id="saveShelterData" onclick="updateShelterData();" disabled>Verify And Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="toggleModal('requestExtraInfo');submittAndRequestAssessments();">Submit and Request Assessments</button>
+            </div>
+        </div>
+    </div>
+</div>

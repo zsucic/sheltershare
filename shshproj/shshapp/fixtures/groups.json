@@ -1,0 +1,1003 @@
+[
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "victim"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "victimgender"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "victimrequeststatus"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "shelterrequesttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "shelterprovider"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "victimrequest"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "groupstatusmapping"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "shelterofferstatus"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "shelterrequestoffer"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "answer"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "shshapp",
+        "model": "question"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add victim",
+        "content_type": [
+            "shshapp",
+            "victim"
+        ],
+        "codename": "add_victim"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change victim",
+        "content_type": [
+            "shshapp",
+            "victim"
+        ],
+        "codename": "change_victim"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete victim",
+        "content_type": [
+            "shshapp",
+            "victim"
+        ],
+        "codename": "delete_victim"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view victim",
+        "content_type": [
+            "shshapp",
+            "victim"
+        ],
+        "codename": "view_victim"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add victim gender",
+        "content_type": [
+            "shshapp",
+            "victimgender"
+        ],
+        "codename": "add_victimgender"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change victim gender",
+        "content_type": [
+            "shshapp",
+            "victimgender"
+        ],
+        "codename": "change_victimgender"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete victim gender",
+        "content_type": [
+            "shshapp",
+            "victimgender"
+        ],
+        "codename": "delete_victimgender"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view victim gender",
+        "content_type": [
+            "shshapp",
+            "victimgender"
+        ],
+        "codename": "view_victimgender"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add victim request status",
+        "content_type": [
+            "shshapp",
+            "victimrequeststatus"
+        ],
+        "codename": "add_victimrequeststatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change victim request status",
+        "content_type": [
+            "shshapp",
+            "victimrequeststatus"
+        ],
+        "codename": "change_victimrequeststatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete victim request status",
+        "content_type": [
+            "shshapp",
+            "victimrequeststatus"
+        ],
+        "codename": "delete_victimrequeststatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view victim request status",
+        "content_type": [
+            "shshapp",
+            "victimrequeststatus"
+        ],
+        "codename": "view_victimrequeststatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add shelter request type",
+        "content_type": [
+            "shshapp",
+            "shelterrequesttype"
+        ],
+        "codename": "add_shelterrequesttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change shelter request type",
+        "content_type": [
+            "shshapp",
+            "shelterrequesttype"
+        ],
+        "codename": "change_shelterrequesttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete shelter request type",
+        "content_type": [
+            "shshapp",
+            "shelterrequesttype"
+        ],
+        "codename": "delete_shelterrequesttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view shelter request type",
+        "content_type": [
+            "shshapp",
+            "shelterrequesttype"
+        ],
+        "codename": "view_shelterrequesttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add shelter provider",
+        "content_type": [
+            "shshapp",
+            "shelterprovider"
+        ],
+        "codename": "add_shelterprovider"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change shelter provider",
+        "content_type": [
+            "shshapp",
+            "shelterprovider"
+        ],
+        "codename": "change_shelterprovider"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete shelter provider",
+        "content_type": [
+            "shshapp",
+            "shelterprovider"
+        ],
+        "codename": "delete_shelterprovider"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view shelter provider",
+        "content_type": [
+            "shshapp",
+            "shelterprovider"
+        ],
+        "codename": "view_shelterprovider"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add victim request",
+        "content_type": [
+            "shshapp",
+            "victimrequest"
+        ],
+        "codename": "add_victimrequest"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change victim request",
+        "content_type": [
+            "shshapp",
+            "victimrequest"
+        ],
+        "codename": "change_victimrequest"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete victim request",
+        "content_type": [
+            "shshapp",
+            "victimrequest"
+        ],
+        "codename": "delete_victimrequest"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view victim request",
+        "content_type": [
+            "shshapp",
+            "victimrequest"
+        ],
+        "codename": "view_victimrequest"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add group status mapping",
+        "content_type": [
+            "shshapp",
+            "groupstatusmapping"
+        ],
+        "codename": "add_groupstatusmapping"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change group status mapping",
+        "content_type": [
+            "shshapp",
+            "groupstatusmapping"
+        ],
+        "codename": "change_groupstatusmapping"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete group status mapping",
+        "content_type": [
+            "shshapp",
+            "groupstatusmapping"
+        ],
+        "codename": "delete_groupstatusmapping"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view group status mapping",
+        "content_type": [
+            "shshapp",
+            "groupstatusmapping"
+        ],
+        "codename": "view_groupstatusmapping"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add shelter offer status",
+        "content_type": [
+            "shshapp",
+            "shelterofferstatus"
+        ],
+        "codename": "add_shelterofferstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change shelter offer status",
+        "content_type": [
+            "shshapp",
+            "shelterofferstatus"
+        ],
+        "codename": "change_shelterofferstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete shelter offer status",
+        "content_type": [
+            "shshapp",
+            "shelterofferstatus"
+        ],
+        "codename": "delete_shelterofferstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view shelter offer status",
+        "content_type": [
+            "shshapp",
+            "shelterofferstatus"
+        ],
+        "codename": "view_shelterofferstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add shelter request offer",
+        "content_type": [
+            "shshapp",
+            "shelterrequestoffer"
+        ],
+        "codename": "add_shelterrequestoffer"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change shelter request offer",
+        "content_type": [
+            "shshapp",
+            "shelterrequestoffer"
+        ],
+        "codename": "change_shelterrequestoffer"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete shelter request offer",
+        "content_type": [
+            "shshapp",
+            "shelterrequestoffer"
+        ],
+        "codename": "delete_shelterrequestoffer"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view shelter request offer",
+        "content_type": [
+            "shshapp",
+            "shelterrequestoffer"
+        ],
+        "codename": "view_shelterrequestoffer"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add answer",
+        "content_type": [
+            "shshapp",
+            "answer"
+        ],
+        "codename": "add_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change answer",
+        "content_type": [
+            "shshapp",
+            "answer"
+        ],
+        "codename": "change_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete answer",
+        "content_type": [
+            "shshapp",
+            "answer"
+        ],
+        "codename": "delete_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view answer",
+        "content_type": [
+            "shshapp",
+            "answer"
+        ],
+        "codename": "view_answer"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add question",
+        "content_type": [
+            "shshapp",
+            "question"
+        ],
+        "codename": "add_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change question",
+        "content_type": [
+            "shshapp",
+            "question"
+        ],
+        "codename": "change_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete question",
+        "content_type": [
+            "shshapp",
+            "question"
+        ],
+        "codename": "delete_question"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view question",
+        "content_type": [
+            "shshapp",
+            "question"
+        ],
+        "codename": "view_question"
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Coordinator",
+        "permissions": [
+            [
+                "add_victim",
+                "shshapp",
+                "victim"
+            ],
+            [
+                "change_victim",
+                "shshapp",
+                "victim"
+            ],
+            [
+                "delete_victim",
+                "shshapp",
+                "victim"
+            ],
+            [
+                "view_victim",
+                "shshapp",
+                "victim"
+            ],
+            [
+                "add_victimgender",
+                "shshapp",
+                "victimgender"
+            ],
+            [
+                "change_victimgender",
+                "shshapp",
+                "victimgender"
+            ],
+            [
+                "delete_victimgender",
+                "shshapp",
+                "victimgender"
+            ],
+            [
+                "view_victimgender",
+                "shshapp",
+                "victimgender"
+            ],
+            [
+                "add_victimrequest",
+                "shshapp",
+                "victimrequest"
+            ],
+            [
+                "change_victimrequest",
+                "shshapp",
+                "victimrequest"
+            ],
+            [
+                "delete_victimrequest",
+                "shshapp",
+                "victimrequest"
+            ],
+            [
+                "view_victimrequest",
+                "shshapp",
+                "victimrequest"
+            ],
+            [
+                "add_victimrequeststatus",
+                "shshapp",
+                "victimrequeststatus"
+            ],
+            [
+                "change_victimrequeststatus",
+                "shshapp",
+                "victimrequeststatus"
+            ],
+            [
+                "delete_victimrequeststatus",
+                "shshapp",
+                "victimrequeststatus"
+            ],
+            [
+                "view_victimrequeststatus",
+                "shshapp",
+                "victimrequeststatus"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Consultant",
+        "permissions": [
+            [
+                "change_victim",
+                "shshapp",
+                "victim"
+            ],
+            [
+                "change_victimrequest",
+                "shshapp",
+                "victimrequest"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "ServiceProvider",
+        "permissions": [
+            [
+                "change_victim",
+                "shshapp",
+                "victim"
+            ],
+            [
+                "view_victim",
+                "shshapp",
+                "victim"
+            ],
+            [
+                "change_victimgender",
+                "shshapp",
+                "victimgender"
+            ],
+            [
+                "view_victimgender",
+                "shshapp",
+                "victimgender"
+            ]
+        ]
+    }
+}
+]

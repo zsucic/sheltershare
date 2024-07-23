@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>ShelterShare</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'shshapp/favicon.ico' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <!-- Add your other stylesheet links and scripts here -->
+
+
+    <style>{% include "shshapp/main.css" %}</style>
+</head>
+<body>
+
+{% include "shshapp/selectShelterRequests.html" %}
+{% include "shshapp/editVisitExtraInfo.html" %}
+{% include "shshapp/editDischarge.html" %}
+{% include "shshapp/editVictimDetail.html" %}
+{% include "shshapp/editUserModal.html" %}
+{% include "shshapp/offer.html" %}
+{% include "shshapp/viewoffers.html" %}
+{% include "shshapp/finalDischarge.html" %}
+{% include "shshapp/qa.html" %}
+{% include "shshapp/editStatus.html" %}
+<div class="header">
+    <img src="{% static 'shshapp/logo.png' %}">
+
+    <strong>{{ user.username }} - {{ user.first_name }} {{ user.last_name }}</strong>
+    <div class="right">
+        <i class="fa fa-cog" onclick="toggleProfile();"></i>
+        <i class="fa fa-sign-out-alt" onclick="window.location = 'logout/';"></i>
+    </div>
+</div>
+<div id="main">
+    <table id="victimrequestTable">
+        <thead>
+        <tr>
+            <th onclick="sortTable(event)" style="display:none">ID<i class="fas fa-sort"></i></th>
+            <th onclick="sortTable(event)">IDENTIFIER<i class="fas fa-sort"></i></th>
+            <th onclick="sortTable(event)">Age<i class="fas fa-sort"></i></th>
+            {% if coordinator %}
+            <th onclick="sortTable(event)">Victim<i class="fas fa-sort"></i></th>
+            {% endif %}
+            <th onclick="sortTable(event)">EDD<i class="fas fa-sort"></i></th>
+            <th onclick="sortTable(event)">Location<i class="fas fa-sort"></i></th>
+            <th onclick="sortTable(event)">Shelter Type<i class="fas fa-sort"></i></th>
+            <th onclick="sortTable(event)">Status<i class="fas fa-sort"></i></th>
+            {% if shelter_provider %}
+            <th onclick="sortTable(event)">Application<i class="fas fa-sort"></i></th>
+            {% endif %}
+            {% if coordinator %}
+            <th onclick="sortTable(event)">Shelter Applications<i class="fas fa-sort"></i></th>
+            {% endif %}
+            <th onclick="sortTable(event)">Q&A<i class="fas fa-sort"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for victim_request in victim_requests %}
+        <tr id="pvtable_row_{{ victim_request.id }}">
+            <td data-label="ID" style="display:none" id="pvtable_id_{{ victim_request.id }}" name="pvtable_id" onclick="openModal('{{ victim_request.id }}')">{{ victim_request.id }}</td>
+            <td data-label="IDENTIFIER" id="pvtable_id_{{ victim_request.victim.identifier }}" name="pvtable_identifier" onclick="openModal('{{ victim_request.id }}')">{{ victim_request.victim.identifier }}</td>
+            <td data-label="AGE" id="pvtable_id_{{ victim_request.victim.age }}" name="pvtable_age" style="text-align:center;" onclick="openModal('{{ victim_request.id }}')">{{ victim_request.victim.age }}</td>
+            {% if coordinator %}
+            <td data-label="Victim" id="pvtable_victim_{{ victim_request.id }}" name="pvtable_victim" onclick="openModal('{{ victim_request.id }}')">{{ victim_request.victim }}</td>
+            {% endif %}
+            <td data-label="EDD" id="pvtable_edd_{{ victim_request.id }}" name="pvtable_edd" onclick="openModal('{{ victim_request.id }}')">{{ victim_request.discharge_date|date:"Y-m-d" }}</td>
+            <td data-label="Location" id="pvtable_location_{{ victim_request.id }}" name="pvtable_location" onclick="openModal('{{ victim_request.id }}')">{% if victim_request.ward %} {{ victim_request.ward }} {% endif %}</td>
+            <td data-label="Shelter Type" id="pvtable_shelter_requests_{{ victim_request.id }}" name="pvtable_shelter_requests" onclick="openModal('{{ victim_request.id }}')">{% for shelter_request_type in shelter_request_types %}
+                {% if shelter_request_type in victim_request.shelter_request_types.all %}
+                <span class="label label-light" title="{{ shelter_request_type.description }}">{{ shelter_request_type.code }}</span>{% endif %}
+                {% endfor %}
+            </td>
+
+            <td data-label="Status" title="{{ victim_request.status.description }}" class="{{ victim_request.status.code }}" id="pvtable_status_{{ victim_request.id }}" name="pvtable_status" onclick="openModal('{{ victim_request.id }}'{% if coordinator %},'statusModal'{% endif %});" >{{ victim_request.status.description }}
+
+            {% if coordinator %}
+                <i class="fas fa-edit" title="Change Victim Status"></i>
+            {% endif %}
+            </td>
+            {% if shelter_provider %}
+            <td id="pvtable_sp_offers_{{ victim_request.id }}" name="pvtable_sp_offers" onclick="openModal('{{ victim_request.id }}')">
+
+
+                {% for shelter_provider_offer in shelter_provider_offers %}
+                {% if shelter_provider_offer.victim_request == victim_request %}
+                <span id="pv_offer_{{ shelter_provider_offer.id }}" class="label label-block {% if shelter_provider_offer.status.code == 'Submitted' %} label-info {% elif shelter_provider_offer.status.code == 'Accepted' %} label-success {% else %} label-danger {% endif %}" data-label="offerStatus" title="{{ shelter_provider_offer.status.description }}">{{ shelter_provider_offer.status.code }}</span>
+                {% endif %}
+                {% endfor %}
+            </td>
+            {% endif %}
+
+            {% if coordinator %}
+            <td id="pvtable_received_offers_{{ victim_request.id }}" name="pvtable_received_offers" onclick="openModal('{{ victim_request.id }}')">
+                {% for offer in relevant_offers_received %}
+                {% if offer.victim_request == victim_request %}
+                <span class="label label-block {% if offer.status.code == 'Submitted' %} label-info {% elif offer.status.code == 'Accepted' %} label-success {% else %} label-danger {% endif %}" id="received_offer_{{ offer.id }}" data-label="offerStatus" title="{{ offer.status.description }}">{{ offer.shelter_provider.display_name }} : {{ offer.status.code }}</span>
+                {% endif %}
+                {% endfor %}
+
+            </td>
+            {% endif %}
+            <td id="pvtable_qa_{{ victim_request.id }}" name="pvtable_qa" style="text-align:center;" onclick="openModal('{{ victim_request.id }}','qaModal');fetchQuestions('{{ victim_request.id }}');"></td>
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+        <p id="newdata"></p>
+    </table>
+</div>
+<script>shelter_provider={% if shelter_provider %}true{% else %}false{% endif %}</script>
+<script>{% include "shshapp/main.js" %}</script>
+<script>{% include "shshapp/updateextrainfo.js" %}</script>
+<script>{% include "shshapp/updatevictimdata.js" %}</script>
+<script>{% include "shshapp/updatedischargedata.js" %}</script>
+<script>{% include "shshapp/updateshelterdata.js" %}</script>
+<script>{% include "shshapp/submitoffer.js" %}</script>
+<script>{% include "shshapp/viewShelterOffers.js" %}</script>
+<script>{% include "shshapp/finaldischarge.js" %}</script>
+<script>{% include "shshapp/qa.js" %}</script>
+<script>{% include "shshapp/updatestatus.js" %}</script>
+<script>
+    function colorRows() {
+  var table = document.getElementById("victimrequestTable");
+  var rows = table.getElementsByTagName("tr");
+  var statusIndex=0;
+  for (var i = 0; i < rows.length; i++) {
+  try{
+        if(statusIndex===0)
+        {
+            pthead=rows[i].getElementsByTagName("th")
+            for (var pthi=0;i< pthead.length;pthi++)
+            {
+                if(pthead[pthi].textContent === "Status") {
+
+                    statusIndex=pthi;
+                    break;
+                }
+            }
+
+        }
+        else
+        {
+            var statusCell = rows[i].getElementsByTagName("td")[statusIndex];
+            var status = statusCell.className;
+
+            switch (status) {
+              case "REG":
+                rows[i].style.backgroundColor = "#f7e6b5";
+                break;
+              case "RFO":
+                rows[i].style.backgroundColor = "#c8faf9";
+                break;
+              case "RFD":
+                rows[i].style.backgroundColor = "#eda6a1";
+                    break;
+              case "DIS":
+                rows[i].style.backgroundColor = "#888888";
+                    break;
+              case "SDR":
+                rows[i].style.backgroundColor = "#c1cef5";
+                    break;
+              default:
+                rows[i].style.backgroundColor = "#ffffff";
+                break;
+            }
+        }
+    }catch
+    {
+    }
+  }
+}
+
+function updatePVQACount(data) {
+  // Loop through each victim request in the data and update the corresponding row in the table
+  for (let i = 0; i < data.length; i++) {
+    const pvId = data[i].victim_request_id;
+    var answeredCount = data[i].answered_question_count;
+    var unansweredCount = data[i].unanswered_question_count;
+    var answeredBadge = "";
+    var unansweredBadge = "";
+    if (answeredCount > 0) {
+      answeredBadge = `<span class="badge badge-pill badge-answered">${answeredCount}</span>`;
+    }
+    if (unansweredCount > 0) {
+      unansweredBadge = `<span class="badge badge-pill badge-unanswered">${unansweredCount}</span>`;
+    }
+    if (unansweredCount ===0 && answeredCount ===0 && shelter_provider) {
+      unansweredBadge = `+`;
+    }
+    const cell =document.getElementById(`pvtable_qa_${pvId}`);
+    cell.innerHTML = answeredBadge +unansweredBadge;
+  }
+}
+function getPVQACount() {
+  fetch("/get_pv_qa_count/")
+    .then(response => response.json())
+    .then(data => {
+      // Process the returned data here
+      updatePVQACount(data)
+    })
+    .catch(error => console.error(error));
+}
+getPVQACount();
+colorRows();
+
+    function displayHoverModal(textToDisplay)
+    {
+        alert(textToDisplay);
+    }
+
+</script>
+</body>
+</html>
+
+

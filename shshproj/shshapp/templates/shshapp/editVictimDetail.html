@@ -1,0 +1,103 @@
+<div class="modal" id="editVictimModal" style="display:none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Victim Basic Data</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="toggleModal('editVictimModal');">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="victim_id" value="{{ victim.id }}">
+                    <div class="form-group row">
+                        <label  for="victim_identifier" class="col-sm-3 col-form-label">Identifier:  </label>
+                        <div class="col-sm-9">
+                            <p id="victim_identifier"></p>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="victim_first_name" class="col-sm-3 col-form-label">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="victim_first_name" onchange="document.getElementById('saveVictimData').disabled=false;">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="victim_last_name" class="col-sm-3 col-form-label">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="victim_last_name" onchange="document.getElementById('saveVictimData').disabled=false;">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="victim_gender" class="col-sm-3 col-form-label">Gender</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="victim_gender" onchange="document.getElementById('saveVictimData').disabled=false;">
+                                {% for gender in genders %}
+                                    <option value="{{ gender.code }}">{{ gender.description }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="victim_dob" class="col-sm-3 col-form-label">Date of Birth</label>
+                        <div class="col-sm-4">
+                            <input type="date" class="form-control" id="victim_dob" onchange="document.getElementById('saveVictimData').disabled=false;">
+                        </div>
+
+                        <label for="victim_age" class="col-sm-2 col-form-label">Age</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="victim_age" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="victim_residence_region" class="col-sm-3 col-form-label">Residence Region</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="victim_residence_region" onchange="document.getElementById('saveVictimData').disabled=false;">
+                        </div>
+                        <label for="victim_residence_postcode" class="col-sm-2 col-form-label">Residence Postcode</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="victim_residence_postcode" onchange="document.getElementById('saveVictimData').disabled=false;">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="victim_residence_street" class="col-sm-3 col-form-label">Residence Street</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="victim_residence_street" onchange="document.getElementById('saveVictimData').disabled=false;">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="victim_residence_number" class="col-sm-3 col-form-label">Residence Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="victim_residence_number" onchange="document.getElementById('saveVictimData').disabled=false;">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="victim_residence_city" class="col-sm-3 col-form-label">Residence City</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="victim_residence_city" onchange="document.getElementById('saveVictimData').disabled=false;">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="victim_residence_country" class="col-sm-3 col-form-label">Residence Country</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="victim_residence_country" onchange="document.getElementById('saveVictimData').disabled=false;">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="toggleModal('editVictimModal');">Close</button>
+                <button type="button" class="btn btn-primary" id="saveVictimData" onclick="updateVictimData();" disabled>Verify And Save</button>
+                <button type="button" class="btn btn-secondary" id="nextStep" onclick="toggleModal('editVictimModal');toggleModal('dischargeModal');">Next</button>
+            </div>
+
+        </div>
+    </div>
+</div>

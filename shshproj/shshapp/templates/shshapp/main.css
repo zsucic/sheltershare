@@ -1,0 +1,202 @@
+
+ html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+body{
+    line-height: 1.3;
+}
+.form-group {
+    margin-bottom: 5px;
+}
+#manual_assessment {
+    margin: auto;
+    vertical-align: middle;
+    text-align: center;
+    height: 20px;
+}
+#manual_assessment_value{
+    width:80px;
+    padding-left: 5px;
+    height: 24px;
+}
+.separated{
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 15px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  background-color: #3c8bb5;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  margin-bottom: 10px;
+}
+.modal-title{
+    font-size: 20px;
+    font-weight: bold;
+    display:inline-block;
+}
+.victim_info {
+    border: 0;
+}
+.victim_info td {
+    border: 0;
+    padding: 0;
+    padding-left: 5px;
+    padding-top: 2px;
+}
+.header img {
+  height: 30px;
+  margin-left: 20px;
+}
+
+.header .right {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.header .right i {
+  font-size: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+      cursor: pointer;
+}
+
+th,
+td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+.fas {
+  float: right;
+}
+pre {
+max-width: 500px;
+word-wrap: break-word;
+}
+#main {
+  margin: 5px;
+  margin-top: 60px;
+}
+.modal-body{
+    max-height:640px;
+    overflow-y:scroll;
+}
+.fa-edit{
+    color:darkgray;
+}
+.fa-edit:hover{
+    color:black;
+}
+.label-light{
+    color:#444444;
+    background-color:#dddddd;
+}
+.label-block{
+    display:block;
+    margin:auto;
+    margin-top:2px;
+    width:fit-content;
+}
+.badge-unanswered{
+        background-color:red;
+        margin:auto;
+ }
+ .badge-answered{
+        background-color:green;
+        margin:auto;
+ }
+ .badge-blue{
+        background-color:lightblue;
+        margin:auto;
+ }
+.badge-blue:hover {
+  background-color: #4b7ddb;
+}
+
+. col-form-label {
+    vertical-align: middle;
+}
+
+    /* Style for desktop screens */
+@media (min-width: 768px) {
+
+    .header {
+    height: 40px;
+  }
+  .header img {
+    height: 20px;
+    margin-left: 10px;
+  }
+  .header .right i {
+    font-size: 16px;
+  }
+  th,
+  td {
+    padding: 4px;
+  }
+}
+
+/* Style for mobile screens */
+@media (max-width: 767px) {
+  .header {
+    height: 40px;
+  }
+  .header img {
+    height: 20px;
+    margin-left: 10px;
+  }
+  .header .right i {
+    font-size: 16px;
+  }
+@media (max-width: 767px) {
+  table {
+    width: 100%;
+    margin-top: 50px;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    cursor: pointer;
+    padding-bottom: 10px;
+  }
+
+  td:nth-child(1), th:nth-child(1),
+  td:nth-child(3), th:nth-child(3),
+  td:nth-child(6), th:nth-child(6)
+   {
+    display: none;
+  }
+
+}

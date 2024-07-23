@@ -1,0 +1,34 @@
+<div class="modal" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="statusModalLabel">Victim Status Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="toggleModal('statusModal');">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            <div class ="victim_info"></div>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="newVictimStatus">New Victim Status:</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="newVictimStatus" onchange="document.getElementById('changeVictimStatus').disabled=false;">
+                                {% for pv_statuses in pv_statuses %}
+                                <option value="{{ pv_statuses.code }}" title="{{ pv_statuses.description }}">{{ pv_statuses.description }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="toggleModal('statusModal');">Close</button>
+                <button type="button" class="btn btn-primary" id="changeVictimStatus" onclick="updateVictimStatus();toggleModal('statusModal');" disabled>Update Status</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+[
+   {
+      "model":"shshapp.shelterrequesttype",
+      "pk":1,
+      "fields":{
+         "code":"REG TRANS HOME",
+         "description":"Regular transportation to victims home without any special requirements"
+      }
+   },
+   {
+      "model":"shshapp.shelterrequesttype",
+      "pk":2,
+      "fields":{
+         "code":"WHL TRANSPORT HOME",
+         "description":"victim transportation to home with wheelchair capable vehicle."
+      }
+   },
+   {
+      "model":"shshapp.shelterrequesttype",
+      "pk":3,
+      "fields":{
+         "code":"HOSPICE",
+         "description":"Hospice accommodation"
+      }
+   },
+   {
+      "model":"shshapp.shelterrequesttype",
+      "pk":4,
+      "fields":{
+         "code":"CARE HOME",
+         "description":"Care home accommodation"
+      }
+   },
+   {
+      "model":"shshapp.shelterrequesttype",
+      "pk":5,
+      "fields":{
+         "code":"NO REQ",
+         "description":"victim doesn't need any help."
+      }
+   },
+   {
+      "model":"shshapp.shelterrequesttype",
+      "pk":6,
+      "fields":{
+         "code":"HOME NURSE",
+         "description":"victim requires daily request by a nurse."
+      }
+   }
+]

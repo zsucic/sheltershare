@@ -1,0 +1,34 @@
+[
+{
+    "model": "shshapp.shelterofferstatus",
+    "pk": 1,
+    "fields": {
+        "code": "Submitted",
+        "description": "Offer made by Shelter Provider"
+    }
+},
+{
+    "model": "shshapp.shelterofferstatus",
+    "pk": 2,
+    "fields": {
+        "code": "Accepted",
+        "description": "Offer accepted by Coordinator"
+    }
+},
+{
+    "model": "shshapp.shelterofferstatus",
+    "pk": 3,
+    "fields": {
+        "code": "Declined",
+        "description": "Offer Declined by Coordinator"
+    }
+},
+{
+    "model": "shshapp.shelterofferstatus",
+    "pk": 4,
+    "fields": {
+        "code": "Expired",
+        "description": "Offer expired"
+    }
+}
+]

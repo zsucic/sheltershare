@@ -1,0 +1,34 @@
+[
+    {
+        "model": "shshapp.victimgender",
+        "pk": 1,
+        "fields": {
+            "code": "MAL",
+            "description": "Male"
+        }
+    },
+    {
+        "model": "shshapp.victimgender",
+        "pk": 2,
+        "fields": {
+            "code": "FEM",
+            "description": "Female"
+        }
+    },
+    {
+        "model": "shshapp.victimgender",
+        "pk": 3,
+        "fields": {
+            "code": "OTH",
+            "description": "Other"
+        }
+    },
+    {
+        "model": "shshapp.victimgender",
+        "pk": 4,
+        "fields": {
+            "code": "UNK",
+            "description": "Unknown"
+        }
+    }
+]

@@ -1,0 +1,43 @@
+<div class="modal" id="selectShelterRequests" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFormLabel">Victim Shelter Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="toggleModal('selectShelterRequests');">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            <div class ="victim_info"></div>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="shelter_request_type">Shelter Request Type</label>
+                        <div class="col-sm-9">
+                            {% for shelter_request_type in shelter_request_types %}
+                            <div class="form-check" id="shelter_request_type" title="{{ shelter_request_type.description }}">
+                                <input type="checkbox" class="form-check-input" name = "shelter_request_type" id="shelter_request_type_{{ shelter_request_type.id }}" value="{{ shelter_request_type.code }}"
+                                       {% if shelter_request_type in victim_request.shelter_request_types.all %} checked {% endif %} onchange="document.getElementById('saveShelterData').disabled=false;">
+                                <label class="form-check-label" for="shelter_request_type_{{ shelter_request_type.id }}">
+                                    {{ shelter_request_type.code }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="additional_shelter_requests">Additional Shelter Requests</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="additional_shelter_requests" onchange="document.getElementById('saveShelterData').disabled=false;"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger"  onclick="toggleModal('selectShelterRequests');">Close</button>
+                <button type="button" class="btn btn-primary" id="saveShelterRequestData" onclick="updateShelterData();" disabled>Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="toggleModal('selectShelterRequests');submittAndRequestOffers();">Submit and Request Offers</button>
+            </div>
+        </div>
+    </div>
+</div>
