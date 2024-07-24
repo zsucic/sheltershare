@@ -1,0 +1,1 @@
+[{"model": "shshapp.shelterprovider", "pk": 1, "fields": {"user": 4, "display_name": "SHP2", "contact_address": "street 2", "contact_phone": "432", "contact_email": "shp2@shp.com"}}, {"model": "shshapp.shelterprovider", "pk": 2, "fields": {"user": 2, "display_name": "SHP1", "contact_address": "street 1", "contact_phone": "123", "contact_email": "shp1@shp.com"}}]
