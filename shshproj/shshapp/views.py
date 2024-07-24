@@ -1,4 +1,6 @@
 import datetime
+import uuid
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.clickjacking import xframe_options_exempt
 
@@ -159,7 +161,6 @@ def update_user_info(request):
         return HttpResponseRedirect('login/')
     if request.method == 'POST':
         user = request.user
-
         user.first_name = request.POST['first_name']
         user.last_name = request.POST['last_name']
         user.email = request.POST['email']
@@ -320,6 +321,52 @@ def generate(request):
     victim_request.save()
     return HttpResponse(200)
 
+
+
+def register_victim(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('login/')
+    genders = VictimGender.objects.all()
+    if request.method == 'POST':
+        identifier = request.POST.get('victim.identifier')
+        first_name = request.POST.get('victim.first_name')
+        last_name = request.POST.get('victim.last_name')
+        date_of_birth = request.POST.get('victim.date_of_birth')
+        gender_code = request.POST.get('victim.gender')
+        residence_region = request.POST.get('victim.residence_region')
+        residence_postcode = request.POST.get('victim.residence_postcode')
+        residence_street = request.POST.get('victim.residence_street')
+        residence_number = request.POST.get('victim.residence_number')
+        residence_city = request.POST.get('victim.residence_city')
+        residence_country = request.POST.get('victim.residence_country')
+        contact_phone = request.POST.get('victim.contact_phone')
+        contact_email = request.POST.get('victim.contact_email')
+        verified_by = request.POST.get('victim.verified_by')
+        gender = VictimGender.objects.get(id=gender_code) if gender_code else None
+
+        victim = Victim(
+            identifier=identifier,
+            first_name=first_name,
+            last_name=last_name,
+            date_of_birth=date_of_birth,
+            gender=gender,
+            residence_region=residence_region,
+            residence_postcode=residence_postcode,
+            residence_street=residence_street,
+            residence_number=residence_number,
+            residence_city=residence_city,
+            residence_country=residence_country,
+            contact_phone=contact_phone,
+            contact_email=contact_email,
+            verified_by=verified_by
+        )
+        victim.save()
+
+    context = {
+        'genders': genders,
+    }
+
+    return render(request, 'shshapp/registerVictim.html', context=context)
 
 from django.shortcuts import render
 from .models import Victim
