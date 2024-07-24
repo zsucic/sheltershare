@@ -3,3 +3,4 @@ gunicorn
 uvicorn[standard]
 channels
 Faker
+django-iris

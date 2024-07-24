@@ -338,18 +338,15 @@ def get_user_permissions(user):
 #TODO: make more specific permission checks (e.g. victim request status change for move status, and add assesment check for....
 def user_has_view_victim_permission(user):
     perms = get_user_permissions(user)
-    # return user.has_perm('plfoviewer.change_victim')
     return "view_victim" in perms
 
 def user_has_change_victim_permission(user):
     perms = get_user_permissions(user)
-    # return user.has_perm('plfoviewer.change_victim')
     return "change_victim" in perms
 
 def user_has_change_victim_request_permission(user):
     perms=get_user_permissions(user)
     return "change_victimrequest" in perms
-    # return user.has_perm('plfoviewer.change_victim_request')
 
 
 @user_passes_test(user_has_change_victim_permission)
