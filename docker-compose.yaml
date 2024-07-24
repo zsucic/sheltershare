@@ -1,18 +1,6 @@
 version: '3'
 services:
-  iris:
-    build: docker/iris
-    container_name: "iris"
-    ports:
-      - 1972:1972
-      - 52773:52773
-      - 8000:8000
-    volumes:
-      - /tmp:/tmp
-    command:
-      - -a
-      - iris session iris -U%SYS '##class(Security.Users).UnExpireUserPasswords("*")'
-  web:
+  sheltershare:
     build:
       context: ./
       dockerfile: ./docker/sheltershare/Dockerfile
@@ -20,20 +8,13 @@ services:
       - TZ=Europe/Berlin
       - DEBUG=$DEBUG
     container_name: "sheltershare"
-    command: >
-      sh -c "sleep 10
-             python manage.py collectstatic --noinput &&
-             python manage.py makemigrations &&
-             python manage.py migrate &&
-             python manage.py makemigrations shshapp&&
-             python manage.py migrate shshapp &&
-             python manage.py loaddata shshapp/fixtures/* &&
-             uvicorn shshproj.asgi:application --reload --host 0.0.0.0 --port 8001 --workers 4 --log-level debug"
     ports:
-      - "8001:8001"
+      - 1972:1972
+      - 52773:52773
+      - 8000:8000
+      - 8001:8001
     volumes:
-      - ./shshproj:/code
-      - ./static:/storage/static
       - /tmp:/tmp
-    links:
-      - iris:iris
+    command:
+      - -a
+      - iris session iris -U%SYS '##class(Security.Users).UnExpireUserPasswords("*")'
