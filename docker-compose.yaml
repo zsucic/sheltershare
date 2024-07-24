@@ -6,13 +6,12 @@ services:
     ports:
       - 1972:1972
       - 52773:52773
-      - 8000:8000
     volumes:
       - /tmp:/tmp
     command:
       - -a
       - iris session iris -U%SYS '##class(Security.Users).UnExpireUserPasswords("*")'
-  web:
+  sheltershare:
     build:
       context: ./
       dockerfile: ./docker/sheltershare/Dockerfile
@@ -28,12 +27,22 @@ services:
              python manage.py makemigrations shshapp&&
              python manage.py migrate shshapp &&
              python manage.py loaddata shshapp/fixtures/* &&
-             uvicorn shshproj.asgi:application --reload --host 0.0.0.0 --port 8001 --workers 4 --log-level debug"
+             uvicorn shshproj.asgi:application --reload --host 0.0.0.0 --port 8000 --workers 4 --log-level debug"
     ports:
-      - "8001:8001"
+      - "8000:8000"
     volumes:
       - ./shshproj:/code
       - ./static:/storage/static
       - /tmp:/tmp
     links:
       - iris:iris
+  nginx:
+    restart: always
+    build: docker/nginx
+    container_name: "nginx"
+    ports:
+      - "8080:8080"
+    volumes:
+      - /tmp/sheltershare/static:/static
+    links:
+      - sheltershare:sheltershare

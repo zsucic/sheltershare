@@ -1,6 +1,5 @@
 FROM intersystemsdc/iris-community
 
-EXPOSE 8000
 EXPOSE 52773
 EXPOSE 1972
 
