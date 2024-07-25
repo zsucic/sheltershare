@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-xb*fyr23m3*#n0oumox6ya3ev9#n%a=zt*^d06n#4#=7e#feez
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://*']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8080']
 
 CHANNEL_LAYERS = {
     "default": {
@@ -133,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/tmp/shshapp/static"
+STATIC_ROOT = "/tmp/sheltershare/static"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
