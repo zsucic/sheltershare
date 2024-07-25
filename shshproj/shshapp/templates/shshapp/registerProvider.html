@@ -16,6 +16,11 @@
     <style>{% include "shshapp/main.css" %}</style>
 </head>
 <body>
+    <div class="header">
+        <img src="{% static 'shshapp/logo.png' %}">
+        <strong>Register Shelter provider</strong>
+        <strong>{{ user.username }} - {{ user.first_name }} {{ user.last_name }}</strong>
+    </div>
     <div class="container">
         <h2>Register Shelter Provider</h2>
         <form method="post" action="{% url 'register_shelter_provider' %}" class="mt-4">
@@ -38,7 +43,7 @@
                 <input type="password" class="form-control" id="retype_password" name="retype_password" required>
             </div>
              <div class="form-group">
-                <label for="contact_email">Contact Email:</label>
+                <label for="contact_email">Email:</label>
                 <input type="email" class="form-control" id="contact_email" name="contact_email" required>
             </div>
             <div class="form-group">
