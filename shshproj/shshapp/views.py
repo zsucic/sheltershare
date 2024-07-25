@@ -1,5 +1,6 @@
 import datetime
 import logging
+import traceback
 import uuid
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -462,6 +463,9 @@ def update_request_discharge(request):
 
 @user_passes_test(user_has_change_victim_request_permission)
 def update_request_shelter(request):
+    logging.info("UPDATE_REQ_SHELTER:")
+    logging.info(f"{request.method}")
+    logging.info(f"{request.POST}")
     if request.method == 'POST':
         try:
             victim_request_id = request.POST.get("victim_request_id")
@@ -469,8 +473,6 @@ def update_request_shelter(request):
             reason_for_visit = request.POST.get("reason_for_visit")
             status = request.POST.get("status")
             date_of_visit = request.POST.get("date_of_visit")
-            discharge_to = request.POST.get("discharge_to")
-            discharge_region = request.POST.get("discharge_region")
             shelter_request_type_codes = request.POST.getlist("shelter_request_types")
             shelter_request_types = ShelterRequestType.objects.filter(code__in=shelter_request_type_codes)
             additional_shelter_requests = request.POST.get("additional_shelter_requests")
@@ -482,8 +484,6 @@ def update_request_shelter(request):
             if status in list(VictimRequestStatus.objects.all().values_list("code", flat=True)):
                 victim_request.status = VictimRequestStatus.objects.filter(code=status).first()
             victim_request.date_of_visit = date_of_visit
-            victim_request.discharge_to = discharge_to
-            victim_request.discharge_region = discharge_region
             victim_request.shelter_request_types.set(shelter_request_types)
             victim_request.additional_shelter_requests = additional_shelter_requests
 
@@ -491,6 +491,8 @@ def update_request_shelter(request):
             victim_request.save()
             return JsonResponse({'status': 'success'})
         except Exception as ex:
+            logging.exception(ex)
+            logging.error(traceback.format_exc())
             return JsonResponse({'status': str(ex)})
 
     return JsonResponse({'status': 'only POST can be used to update victim data!'})
