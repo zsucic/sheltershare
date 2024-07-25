@@ -21,7 +21,7 @@ fake = Faker()
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 def get_user_full_name(username):
     User = get_user_model()
@@ -368,7 +368,7 @@ def create_and_save_victim(request):
     residence_country = request.POST.get('victim.residence_country')
     contact_phone = request.POST.get('victim.contact_phone')
     contact_email = request.POST.get('victim.contact_email')
-    verified_by = request.POST.get('victim.verified_by')
+    #verified_by = request.POST.get('victim.verified_by') #we don't set verified_by until coordinator actually verifies...
     gender = VictimGender.objects.get(id=gender_code) if gender_code else None
     victim = Victim(
         identifier=identifier,
@@ -425,6 +425,8 @@ def register_shelter_provider(request):
             contact_email=contact_email
         )
 
+        shelterProviderGroup = Group.objects.get(name='ShelterProvider')
+        shelterProviderGroup.user_set.add(new_user)
         # Authenticate and log in the user
         user = authenticate(username=username, password=password)
         if user is not None:

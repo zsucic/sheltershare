@@ -16,92 +16,125 @@
     <style>.btn-custom-spacing {
         margin-top: 20px; /* Adjust as needed */
     }
+        .border{
+        margin-top: 30px;
+        }
+        .container{
+        margin-top:0px;
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <img src="{% static 'shshapp/logo.png' %}">
-        <strong>Register Victim</strong>
+        <strong>Request Shelter</strong>
         <strong>{{ user.username }} - {{ user.first_name }} {{ user.last_name }}</strong>
     </div>
-    <div class="container">
+    <div class="container mb-4">
 
-        <form method="post" action="{% url 'register_victim' %}" class="mt-4">
-            {% csrf_token %}
-             <div class="col-md-6">
-                <label for="identifier">Identifier:</label>
-                <input type="text" class="form-control" id="identifier" name="victim.identifier" title="SSN, Driver's licence, Passport number...">
-            </div>
-             <div class="col-md-6">
-                <label for="first_name">First Name:</label>
-                <input type="text" class="form-control" id="first_name" name="victim.first_name">
-            </div>
-             <div class="col-md-6">
-                <label for="last_name">Last Name:</label>
-                <input type="text" class="form-control" id="last_name" name="victim.last_name">
-            </div>
-             <div class="col-md-6">
-                <label for="date_of_birth">Date of Birth:</label>
-                <input type="date" class="form-control" id="date_of_birth" name="victim.date_of_birth" required>
-            </div>
-             <div class="col-md-6">
-                <label for="gender">Gender:</label>
-                <select class="form-control" id="gender" name="victim.gender">
-                    {% for gender in genders %}
-                        <option value="{{ gender.id }}">{{ gender.description }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-             <div class="col-md-6">
-                <label for="residence_region">Residence Region:</label>
-                <input type="text" class="form-control" id="residence_region" name="victim.residence_region">
-            </div>
-             <div class="col-md-6">
-                <label for="residence_postcode">Residence Postcode:</label>
-                <input type="text" class="form-control" id="residence_postcode" name="victim.residence_postcode">
-            </div>
-             <div class="col-md-6">
-                <label for="residence_street">Residence Street:</label>
-                <input type="text" class="form-control" id="residence_street" name="victim.residence_street">
-            </div>
-            <div class="col-md-6">
-                <label for="residence_number">Residence Number:</label>
-                <input type="text" class="form-control" id="residence_number" name="victim.residence_number">
-            </div>
-             <div class="col-md-6">
-                <label for="residence_city">Residence City:</label>
-                <input type="text" class="form-control" id="residence_city" name="victim.residence_city">
-            </div>
-             <div class="col-md-6">
-                <label for="residence_country">Residence Country:</label>
-                <input type="text" class="form-control" id="residence_country" name="victim.residence_country" value="USA">
-            </div>
-             <div class="col-md-6">
-                <label for="contact_phone">Contact Phone:</label>
-                <input type="tel" class="form-control" id="contact_phone" name="victim.contact_phone">
-            </div>
-             <div class="col-md-6">
-                <label for="contact_email">Contact Email:</label>
-                <input type="email" class="form-control" id="contact_email" name="victim.contact_email">
-            </div>
-             <div class="col-md-6">
-                <label for="verified_by">Verified By:</label>
-                <input type="text" class="form-control" id="verified_by" name="victim.verified_by">
-            </div>
-            <div class="col-md-6">
-                <label for="shelter_type">Shelter type:</label>
-                <select class="form-control" id="shelter_type" name="victim.shelter_type" multiple="multiple">
-                    {% for shelter in shelter_request_types %}
-                        <option value="{{ shelter.id }}">{{ shelter.description }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-             <div>
-                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary btn-custom-spacing">Register</button>
-                 </div>
-            </div>
-        </form>
+        <div class="form-group">
+
+
+            <form method="post" action="{% url 'register_victim' %}" class="mt-4">
+                {% csrf_token %}
+
+                <!-- Demographic Data Section -->
+                <fieldset class="border p-3 mb-4">
+                    <legend class="w-auto px-2">Demographic Data</legend>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="identifier" class="form-label">Identifier:</label>
+                            <input type="text" class="form-control" id="identifier" name="victim.identifier" title="SSN, Driver's licence, Passport number...">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="first_name" class="form-label">First Name:</label>
+                            <input type="text" class="form-control" id="first_name" name="victim.first_name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="last_name" class="form-label">Last Name:</label>
+                            <input type="text" class="form-control" id="last_name" name="victim.last_name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="date_of_birth" class="form-label">Date of Birth:</label>
+                            <input type="date" class="form-control" id="date_of_birth" name="victim.date_of_birth" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="gender" class="form-label">Gender:</label>
+                            <select class="form-control" id="gender" name="victim.gender">
+                                {% for gender in genders %}
+                                    <option value="{{ gender.id }}">{{ gender.description }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Address Section -->
+                <fieldset class="border p-3 mb-4">
+                    <legend class="w-auto px-2">Address</legend>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="residence_region" class="form-label">Region:</label>
+                            <input type="text" class="form-control" id="residence_region" name="victim.residence_region">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="residence_postcode" class="form-label">Postcode:</label>
+                            <input type="text" class="form-control" id="residence_postcode" name="victim.residence_postcode">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="residence_street" class="form-label">Street:</label>
+                            <input type="text" class="form-control" id="residence_street" name="victim.residence_street">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="residence_number" class="form-label">Apt Number:</label>
+                            <input type="text" class="form-control" id="residence_number" name="victim.residence_number">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="residence_city" class="form-label">City:</label>
+                            <input type="text" class="form-control" id="residence_city" name="victim.residence_city">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="residence_country" class="form-label">Country:</label>
+                            <input type="text" class="form-control" id="residence_country" name="victim.residence_country" value="USA">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Contact Info Section -->
+                <fieldset class="border p-3 mb-4">
+                    <legend class="w-auto px-2">Contact Info</legend>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="contact_phone" class="form-label">Phone:</label>
+                            <input type="tel" class="form-control" id="contact_phone" name="victim.contact_phone">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="contact_email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="contact_email" name="victim.contact_email">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Shelter Info Section -->
+                <fieldset class="border p-3 mb-4">
+                    <legend class="w-auto px-2">Shelter Info</legend>
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label for="shelter_type" class="form-label">Request type:</label>
+                            <select class="form-control" id="shelter_type" name="victim.shelter_type" multiple="multiple">
+                                {% for shelter in shelter_request_types %}
+                                    <option value="{{ shelter.id }}">{{ shelter.description }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-custom-spacing">Send Request</button>
+                </div>
+            </form>
     </div>
    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

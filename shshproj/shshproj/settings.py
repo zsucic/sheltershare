@@ -80,23 +80,23 @@ WSGI_APPLICATION = 'shshproj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django_iris',
-        'NAME': 'USER',
-        'HOST': 'iris',
-        'PORT': 1972,
-        'USER': 'django',
-        'PASSWORD': 'django',
-        'TIMEOUT': 60,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django_iris',
+#         'NAME': 'USER',
+#         'HOST': 'iris',
+#         'PORT': 1972,
+#         'USER': 'django',
+#         'PASSWORD': 'django',
+#         'TIMEOUT': 60,
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
