@@ -322,51 +322,71 @@ def generate(request):
     return HttpResponse(200)
 
 
-
 def register_victim(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect('login/')
-    genders = VictimGender.objects.all()
-    if request.method == 'POST':
-        identifier = request.POST.get('victim.identifier')
-        first_name = request.POST.get('victim.first_name')
-        last_name = request.POST.get('victim.last_name')
-        date_of_birth = request.POST.get('victim.date_of_birth')
-        gender_code = request.POST.get('victim.gender')
-        residence_region = request.POST.get('victim.residence_region')
-        residence_postcode = request.POST.get('victim.residence_postcode')
-        residence_street = request.POST.get('victim.residence_street')
-        residence_number = request.POST.get('victim.residence_number')
-        residence_city = request.POST.get('victim.residence_city')
-        residence_country = request.POST.get('victim.residence_country')
-        contact_phone = request.POST.get('victim.contact_phone')
-        contact_email = request.POST.get('victim.contact_email')
-        verified_by = request.POST.get('victim.verified_by')
-        gender = VictimGender.objects.get(id=gender_code) if gender_code else None
 
-        victim = Victim(
-            identifier=identifier,
-            first_name=first_name,
-            last_name=last_name,
-            date_of_birth=date_of_birth,
-            gender=gender,
-            residence_region=residence_region,
-            residence_postcode=residence_postcode,
-            residence_street=residence_street,
-            residence_number=residence_number,
-            residence_city=residence_city,
-            residence_country=residence_country,
-            contact_phone=contact_phone,
-            contact_email=contact_email,
-            verified_by=verified_by
-        )
-        victim.save()
+    genders = VictimGender.objects.all()
+    all_shelter_request_types = ShelterRequestType.objects.all()
+
+    if request.method == 'POST':
+        victim = create_and_save_victim(request)
+        create_and_save_victim_request(request, victim)
 
     context = {
         'genders': genders,
+        'shelter_request_types': all_shelter_request_types,
     }
 
     return render(request, 'shshapp/registerVictim.html', context=context)
+
+def create_and_save_victim_request(request, victim):
+    shelter_request_types = ShelterRequestType.objects.filter(id__in=request.POST.getlist('victim.shelter_type'))
+    victim_visit_status = VictimRequestStatus.objects.get(code="REG")
+    victim_request = VictimRequest.objects.create(
+        victim=victim,
+        status=victim_visit_status,
+        date_of_visit=datetime.datetime.today() - datetime.timedelta(days=fake.random.randint(0, 10)),
+        discharge_date=datetime.datetime.today(),
+
+    )
+    victim_request.shelter_request_types.set(shelter_request_types)
+    victim_request.save()
+
+
+def create_and_save_victim(request):
+    identifier = request.POST.get('victim.identifier')
+    first_name = request.POST.get('victim.first_name')
+    last_name = request.POST.get('victim.last_name')
+    date_of_birth = request.POST.get('victim.date_of_birth')
+    gender_code = request.POST.get('victim.gender')
+    residence_region = request.POST.get('victim.residence_region')
+    residence_postcode = request.POST.get('victim.residence_postcode')
+    residence_street = request.POST.get('victim.residence_street')
+    residence_number = request.POST.get('victim.residence_number')
+    residence_city = request.POST.get('victim.residence_city')
+    residence_country = request.POST.get('victim.residence_country')
+    contact_phone = request.POST.get('victim.contact_phone')
+    contact_email = request.POST.get('victim.contact_email')
+    verified_by = request.POST.get('victim.verified_by')
+    gender = VictimGender.objects.get(id=gender_code) if gender_code else None
+    victim = Victim(
+        identifier=identifier,
+        first_name=first_name,
+        last_name=last_name,
+        date_of_birth=date_of_birth,
+        gender=gender,
+        residence_region=residence_region,
+        residence_postcode=residence_postcode,
+        residence_street=residence_street,
+        residence_number=residence_number,
+        residence_city=residence_city,
+        residence_country=residence_country,
+        contact_phone=contact_phone,
+        contact_email=contact_email,
+        verified_by=verified_by
+    )
+    victim.save()
+    return victim
+
 
 from django.shortcuts import render
 from .models import Victim

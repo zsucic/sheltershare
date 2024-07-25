@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
+     <!-- Select2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
     <style>{% include "shshapp/main.css" %}</style>
     <style>.btn-custom-spacing {
         margin-top: 20px; /* Adjust as needed */
@@ -27,7 +30,7 @@
             {% csrf_token %}
              <div class="col-md-6">
                 <label for="identifier">Identifier:</label>
-                <input type="text" class="form-control" id="identifier" name="victim.identifier">
+                <input type="text" class="form-control" id="identifier" name="victim.identifier" title="SSN, Driver's licence, Passport number...">
             </div>
              <div class="col-md-6">
                 <label for="first_name">First Name:</label>
@@ -71,7 +74,7 @@
             </div>
              <div class="col-md-6">
                 <label for="residence_country">Residence Country:</label>
-                <input type="text" class="form-control" id="residence_country" name="victim.residence_country" value="UK">
+                <input type="text" class="form-control" id="residence_country" name="victim.residence_country" value="USA">
             </div>
              <div class="col-md-6">
                 <label for="contact_phone">Contact Phone:</label>
@@ -85,6 +88,14 @@
                 <label for="verified_by">Verified By:</label>
                 <input type="text" class="form-control" id="verified_by" name="victim.verified_by">
             </div>
+            <div class="col-md-6">
+                <label for="shelter_type">Shelter type:</label>
+                <select class="form-control" id="shelter_type" name="victim.shelter_type" multiple="multiple">
+                    {% for shelter in shelter_request_types %}
+                        <option value="{{ shelter.id }}">{{ shelter.description }}</option>
+                    {% endfor %}
+                </select>
+            </div>
              <div class="col-md-6">
                  <div class="mt-4">
                     <button type="submit" class="btn btn-primary btn-custom-spacing">Register</button>
@@ -92,9 +103,33 @@
             </div>
         </form>
     </div>
-    <!-- Bootstrap JS and dependencies -->
+   <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#shelter_type').select2({
+                placeholder: "Select or add shelter type",
+                allowClear: true,
+                tags: true, // Enable adding new options
+                createTag: function(params) {
+                    var term = $.trim(params.term);
+                    if (term === '') {
+                        return null;
+                    }
+                    return {
+                        id: term,
+                        text: term,
+                        newTag: true // Mark as a new tag
+                    };
+                }
+            });
+        });
+    </script>
 </body>
 </html>
