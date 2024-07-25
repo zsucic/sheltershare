@@ -68,6 +68,6 @@ function performFinalDischarge()
        }
 
    }
-   updateData("/perform_final_discharge/", formData,"finalDischargeModal",true);
+    updateData("perform_final_discharge/", formData,"finalDischargeModal",true);
 
 }

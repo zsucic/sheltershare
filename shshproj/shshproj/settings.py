@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-xb*fyr23m3*#n0oumox6ya3ev9#n%a=zt*^d06n#4#=7e#feez
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8080']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8080','http://localhost:52773']
 
 CHANNEL_LAYERS = {
     "default": {
@@ -73,6 +73,42 @@ TEMPLATES = [
         },
     },
 ]
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'logit': {
+
+            'filename': '/tmp/sheltershare.log',
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1024 * 1024 * 10,  # 10MB
+            'backupCount': 10,
+            'formatter': 'verbose',
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['logit'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['null'],  # Quiet by default!
+            'propagate': False,
+            'level':'DEBUG',
+            },
+    },
+}
 
 WSGI_APPLICATION = 'shshproj.wsgi.application'
 
@@ -133,7 +169,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/tmp/sheltershare/static"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

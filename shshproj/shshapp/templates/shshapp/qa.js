@@ -19,7 +19,7 @@ function fetchQuestions(pv_id=null) {
    {
     return;
    }
-  fetch(`/get_victim_request_questions/${victimRequestId}/`)
+  fetch(window.location.href+`get_victim_request_questions/${victimRequestId}/`)
     .then(response => response.json())
     .then(data => {
       var questionList = document.getElementById("question-list");
@@ -59,7 +59,7 @@ function submitQuestion() {
       formData.append("victim_request_id", document.getElementById("victim_request_id").value);
       formData.append("new_question", question);
       document.getElementById("new_question").value = "";
-      updateData("/submit_question/", formData);
+       updateData("submit_question/", formData);
       fetchQuestions();
     }
     else
@@ -88,7 +88,7 @@ function submitAnswers() {
     if (valid_answers)
     {
       formData.append("new_answers", JSON.stringify(jsondata));
-      updateData("/submit_answers/", formData);
+       updateData("submit_answers/", formData);
       fetchQuestions();
   }
   else

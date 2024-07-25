@@ -1,6 +1,6 @@
 Django==5.0.7
-gunicorn
 uvicorn[standard]
 channels
 Faker
 django-iris
+tzdata

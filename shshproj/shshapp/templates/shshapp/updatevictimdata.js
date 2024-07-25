@@ -11,6 +11,6 @@ function updateVictimData() {
     formData.append("victim_residence_number", document.getElementById("victim_residence_number").value);
     formData.append("victim_residence_city", document.getElementById("victim_residence_city").value);
     formData.append("victim_residence_country", document.getElementById("victim_residence_country").value);
-    updateData("/update_victim/", formData,"saveVictimData");
+     updateData("update_victim/", formData,"saveVictimData");
 
 }

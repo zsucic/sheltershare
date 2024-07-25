@@ -116,7 +116,7 @@ function acceptSelectedOffers()
     formData.append("victim_request_id", document.getElementById("victim_request_id").value);
     formData.append("accepted_shelter_offers", acceptedShelterOffers)
     formData.append("status", "RFD");
-    updateData("/accept_offers/", formData,"viewShelterOffersModal",true);
+     updateData("accept_offers/", formData,"viewShelterOffersModal",true);
 
 
 

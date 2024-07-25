@@ -11,7 +11,7 @@ function submitOffer() {
     formData.append("price", document.getElementById("price").value);
     formData.append("shelter_location", document.getElementById("shelter_location").value);
     formData.append("notes", document.getElementById("pv_offer_notes").value);
-   updateData("/submit_offer/", formData,"shelterOfferModal",true);
+    updateData("submit_offer/", formData,"shelterOfferModal",true);
 
 
 }

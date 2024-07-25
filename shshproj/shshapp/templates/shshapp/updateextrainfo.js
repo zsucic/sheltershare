@@ -19,7 +19,7 @@ function updateExtraInfo(setStatus="") {
     formData.append("additional_shelter_requests", document.getElementById("additional_shelter_requests").value);
 
 
-    updateData("/update_request_shelter/", formData,"saveShelterData");
+     updateData("update_request_shelter/", formData,"saveShelterData");
 }
 function submittAndRequestAssessments()
 {

@@ -18,7 +18,7 @@ function codeToClass(statusCode)
     }
 }
 function updateVictimVisit(pk) {
-  fetch( "victim_request/"+pk+"/")
+  fetch( window.location.href+"victim_request/"+pk+"/")
     .then(response => response.json())
     .then(data => {
       if(data.error === "Unauthorized")
@@ -446,7 +446,7 @@ function getAgeGroup(age) {
 //}
 
 function openModal(pk,modalName=null) {
-  fetch( "victim_request/"+pk+"/")
+  fetch( window.location.href+"victim_request/"+pk+"/")
     .then(response => response.json())
     .then(data => {
         fetchVictimInfo(data.victim_id)
@@ -739,7 +739,7 @@ function isHidden(el) {
 }
 
 function fetchVictimInfo(victimId) {
-  fetch(`/victim_info/${victimId}/`)
+  fetch(window.location.href+`victim_info/${victimId}/`)
     .then(response => response.json())
     .then(data => {
       // Create the table using the provided template

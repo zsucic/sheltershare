@@ -199,7 +199,7 @@ function updatePVQACount(data) {
   }
 }
 function getPVQACount() {
-  fetch("/get_pv_qa_count/")
+  fetch(window.location.href+"get_pv_qa_count/")
     .then(response => response.json())
     .then(data => {
       // Process the returned data here

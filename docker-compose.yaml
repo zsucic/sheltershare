@@ -15,6 +15,4 @@ services:
       - 8001:8001
     volumes:
       - /tmp:/tmp
-    command:
-      - -a
-      - iris session iris -U%SYS '##class(Security.Users).UnExpireUserPasswords("*")'
+

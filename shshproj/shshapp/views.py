@@ -1,4 +1,5 @@
 import datetime
+import logging
 import uuid
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -158,7 +159,7 @@ def get_victim_request(request, pk):
 
 def update_user_info(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('login/')
+        return redirect('login')
     if request.method == 'POST':
         user = request.user
 
@@ -173,16 +174,17 @@ def update_user_info(request):
 
         user.save()
 
-    return redirect('/')
+    return redirect('index')
 
 
 def logout_view(request):
     logout(request)
     # Redirect to a root page.
-    return HttpResponseRedirect('/')
+    return redirect("index")
 
 
 def login_view(request):
+    logging.info(f"LOGIN VIEW: {request.user}")
     if request.user.is_authenticated:
         return HttpResponse("Already logged in!")
     if request.method == "POST":
@@ -190,13 +192,24 @@ def login_view(request):
                                 password=request.POST['password'])
         if user_obj:
             login(request, user_obj)
-            return HttpResponseRedirect('/')
+            response = redirect("index")
+            # Add your custom header
+
+            # Extract the sessionid from the Set-Cookie header
+            sessionid = request.session.session_key
+
+            if sessionid:
+                # Add the sessionid as a separate Set-Cookie header
+                response.set_cookie('sessionid', sessionid, httponly=True)
+
+            return response
     return render(request, 'shshapp/login.html', {})
 
 
 def index(request):
+    logging.info(f"INDEX VIEW: {request.user}")
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('login/')
+        return redirect('login')
     shelter_request_types = ShelterRequestType.objects.all()
     genders= VictimGender.objects.all()
     pv_statuses= VictimRequestStatus.objects.all()
