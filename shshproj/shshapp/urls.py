@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (index,generate,logout_view,login_view,update_user_info,get_victim_request,update_victim,\
     update_request_discharge,update_request_shelter,move_status,submit_offer,accept_offers,\
     perform_final_discharge, victim_info,submit_question,get_victim_request_questions,get_pv_qa_count,submit_answers,
-    register_victim)
+    register_victim, register_shelter_provider)
 
 urlpatterns = [
 
@@ -24,5 +24,6 @@ urlpatterns = [
     path('get_victim_request_questions/<int:pk>/', get_victim_request_questions, name='get_victim_request_questions'),
     path('victim_info/<int:victim_id>/', victim_info, name='victim_info'),
     path('register_victim/', register_victim, name='register_victim'),
+    path('register_shelter_provider/', register_shelter_provider, name='register_shelter_provider'),
     path('', index, name='index'),
 ]

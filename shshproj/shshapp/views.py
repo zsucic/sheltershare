@@ -21,6 +21,8 @@ fake = Faker()
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 
+from django.contrib.auth.models import User
+
 def get_user_full_name(username):
     User = get_user_model()
     try:
@@ -387,6 +389,49 @@ def create_and_save_victim(request):
     victim.save()
     return victim
 
+
+def register_shelter_provider(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        retype_password = request.POST.get('retype_password')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        contact_address = request.POST.get('contact_address')
+        contact_phone = request.POST.get('contact_phone')
+        contact_email = request.POST.get('contact_email')
+
+        display_name = f"{first_name} {last_name}"
+
+        if not all([username, password, retype_password, display_name, contact_address, contact_phone, contact_email]):
+            return render(request, 'shshapp/registerProvider.html', {'error': 'All fields are required'})
+
+
+        if password != retype_password:
+            return render(request, 'shshapp/registerProvider.html', {'error': 'Passwords do not match'})
+
+        if User.objects.filter(username=username).exists() or User.objects.filter(email=contact_email).exists():
+            error_message = 'Username already taken' if User.objects.filter(
+                username=username).exists() else 'Email already in use'
+            return render(request, 'shshapp/registerProvider.html', {'error': error_message})
+
+        new_user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name,email=contact_email)
+        # Create ShelterProvider instance and link to the user
+        ShelterProvider.objects.create(
+            user=new_user,
+            display_name=display_name,
+            contact_address=contact_address,
+            contact_phone=contact_phone,
+            contact_email=contact_email
+        )
+
+        # Authenticate and log in the user
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+
+    return render(request, 'shshapp/registerProvider.html')
 
 from django.shortcuts import render
 from .models import Victim
