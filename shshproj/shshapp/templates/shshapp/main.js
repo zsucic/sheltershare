@@ -1,5 +1,5 @@
 const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-const socket = new WebSocket(protocol + '//' + window.location.host + '/shsh_ws/');
+const socket = new WebSocket(protocol + '//' + window.location.host + window.location.pathname + 'shsh_ws/');
 function codeToClass(statusCode)
 {
     switch(statusCode)
