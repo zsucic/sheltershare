@@ -6,9 +6,6 @@ ShelterShare is a Django application designed to connect disaster victims with s
 
 The application aims to streamline the process of finding and offering shelter during times of disaster, ensuring that victims can quickly and easily access safe places to stay.
 
-
-## Features
-
 ## Features
 
 ShelterShare offers a comprehensive suite of features designed to connect disaster victims with shelter providers. Key features include:
@@ -33,9 +30,11 @@ These features are designed to ensure an efficient and effective connection betw
 Follow these steps to set up ShelterShare locally.
 
 ### Prerequisites
-
+## For running in a Docker Container
 - Docker
 - Docker Compose
+
+## For running as a standalone app
 - Python 3.x
 - **Django 5.0.7**
 - **gunicorn**
@@ -56,16 +55,13 @@ cd sheltershare
 
 Build and start the Docker containers:
 
-docker compose up
-
-Run Migrations
-docker-compose exec web python manage.py migrate
+docker-compose up --build -d
 
 Access the Application
 Once the containers are running, access ShelterShare at:
 
-Web Interface: http://localhost/8000
-Django Admin Interface: http://localhost/8000/admin/
+Web Interface: http://localhost/8080
+Django Admin Interface: http://localhost/8080/admin/
 
 
 
