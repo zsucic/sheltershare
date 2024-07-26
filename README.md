@@ -25,7 +25,6 @@ The application aims to streamline the process of finding and offering shelter d
 
 ![img_10.png](img_10.png)
 
-- 
 - **Request Management:** Submit and track shelter requests from victims, including managing and updating request details.
 
 ![img_12.png](img_12.png)
@@ -41,15 +40,35 @@ The application aims to streamline the process of finding and offering shelter d
 
 ![img_13.png](img_13.png)
 
-**Database Integration:** ShelterShare uses InterSystems IRIS as its database system.
+**Database Integration:** ShelterShare uses ***InterSystems IRIS*** as its database system.
 
 ![img_7.png](img_7.png)
 
 These features are designed to ensure an efficient and effective connection between disaster victims and shelter providers.
 
-## Online Demo
+## Try Online Demo
 
 https://sheltershare.zsucic.com/
+
+### Testing Accounts
+
+**Provided logins:**
+
+**Coordinator account 1:**
+***Username:*** coordinator_01
+***Password:*** coordpass
+
+**Coordinator account 2:**
+***Username:*** coordinator_02
+***Password:*** coordpass
+
+**Shelter Provider account 1:**
+***Username:*** shelterprovider_01
+***Password:*** shelterpass
+
+**Shelter Provider account 2:**
+***Username:*** shelterprovider_02
+***Password:*** shelterpass
 
 ## Installation and Setup
 
