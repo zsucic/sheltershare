@@ -112,19 +112,27 @@ Django Admin Interface: http://localhost:8000/admin/
 **Provided logins:**
 
 **Coordinator account 1:**
+
 ***Username:*** coordinator_01
+
 ***Password:*** coordpass
 
 **Coordinator account 2:**
+
 ***Username:*** coordinator_02
+
 ***Password:*** coordpass
 
 **Shelter Provider account 1:**
+
 ***Username:*** shelterprovider_01
+
 ***Password:*** shelterpass
 
 **Shelter Provider account 2:**
+
 ***Username:*** shelterprovider_02
+
 ***Password:*** shelterpass
 
 ## URL Patterns and Views
