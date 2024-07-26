@@ -384,7 +384,7 @@ def create_and_save_victim(request):
         residence_country=residence_country,
         contact_phone=contact_phone,
         contact_email=contact_email,
-        verified_by=verified_by
+        #verified_by=verified_by
     )
     victim.save()
     return victim
