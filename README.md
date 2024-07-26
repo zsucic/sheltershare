@@ -1,7 +1,7 @@
 # Project Title
  ShelterShare
 
-![logo.png](shshproj/shshapp/static/shshapp/logo.png)
+![img_9.png](shshproj/shshapp/static/shshapp/img_9.png)
 
 ## Description
 ShelterShare is a Django application designed to connect disaster victims with shelter providers.
