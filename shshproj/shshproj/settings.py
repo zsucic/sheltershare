@@ -73,6 +73,42 @@ TEMPLATES = [
         },
     },
 ]
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'logit': {
+
+            'filename': '/tmp/sheltershare.log',
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1024 * 1024 * 10,  # 10MB
+            'backupCount': 10,
+            'formatter': 'verbose',
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['logit'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['null'],  # Quiet by default!
+            'propagate': False,
+            'level':'DEBUG',
+            },
+    },
+}
 
 WSGI_APPLICATION = 'shshproj.wsgi.application'
 
