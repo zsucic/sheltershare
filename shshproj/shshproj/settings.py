@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-xb*fyr23m3*#n0oumox6ya3ev9#n%a=zt*^d06n#4#=7e#feez
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8080']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8080',"https://sheltershare.zsucic.com","https://sheltershare.zsucic.com:443","https://sheltershare.zsucic.com:80","http://sheltershare.zsucic.com","http://sheltershare.zsucic.com:80","http://sheltershare.zsucic.com:443","https://sheltershare.zsucic.com:8080","http://sheltershare.zsucic.com:8080"]
 
 CHANNEL_LAYERS = {
     "default": {
