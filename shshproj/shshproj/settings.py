@@ -92,7 +92,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'maxBytes': 1024 * 1024 * 10,  # 10MB
-            'backupCount': 10,
+            'backupCount': 20,
             'formatter': 'verbose',
         }
     },

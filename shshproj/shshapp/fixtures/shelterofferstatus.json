@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "code": "Submitted",
-        "description": "Offer made by Shelter Provider"
+        "description": "Offer Submitted by Shelter Provider"
     }
 },
 {
@@ -12,15 +12,15 @@
     "pk": 2,
     "fields": {
         "code": "Accepted",
-        "description": "Offer accepted by Coordinator"
+        "description": "Offer Accepted by Coordinator"
     }
 },
 {
     "model": "shshapp.shelterofferstatus",
     "pk": 3,
     "fields": {
-        "code": "Declined",
-        "description": "Offer Declined by Coordinator"
+        "code": "Rejected",
+        "description": "Offer Rejected by Coordinator"
     }
 },
 {
@@ -28,7 +28,7 @@
     "pk": 4,
     "fields": {
         "code": "Expired",
-        "description": "Offer expired"
+        "description": "Offer Expired"
     }
 }
 ]
