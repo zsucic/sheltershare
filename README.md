@@ -62,14 +62,14 @@ Follow these steps to set up ShelterShare locally.
 - Docker Compose
 
 ## For running as a standalone app
-- Python 3.x
+- **Python 3.x**
 - **Django 5.0.7**
 - **gunicorn**
 - **uvicorn[standard]**
 - **channels**
 - **Faker**
 - **django-iris**
-- InterSystems IRIS
+- **InterSystems IRIS**
 
 
 ### Clone the Repository
@@ -84,12 +84,29 @@ Build and start the Docker containers:
 `docker-compose up --build -d`
 
 
-
 Web Interface: http://localhost:8000
 
 Django Admin Interface: http://localhost:8000/admin/
 
+### Login
 
+**Provided logins:**
+
+**Coordinator account 1:**
+***Username:*** coordinator_01
+***Password:*** coordpass
+
+**Coordinator account 2:**
+***Username:*** coordinator_02
+***Password:*** coordpass
+
+**Shelter Provider account 1:**
+***Username:*** shelterprovider_01
+***Password:*** shelterpass
+
+**Shelter Provider account 2:**
+***Username:*** shelterprovider_02
+***Password:*** shelterpass
 
 ## URL Patterns and Views
 
@@ -116,6 +133,6 @@ ShelterShare includes various endpoints to manage users, victims, requests, offe
 ## Contact
 For further questions, support, or inquiries regarding ShelterShare, please contact HealthInnova team:
 
-- **Zeljko:** [zeljko@healthinnova.com](mailto:zeljko@healthinnova.com)
-- **Damir:** [damir@healthinnova.com](mailto:damir@healthinnova.com)
+- **Željko Sučić:** [zeljko@healthinnova.com](mailto:zeljko@healthinnova.com)
+- **Damir Mikloš:** [damir@healthinnova.com](mailto:damir@healthinnova.com)
 
