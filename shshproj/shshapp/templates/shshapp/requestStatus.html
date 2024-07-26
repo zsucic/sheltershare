@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Victim Request Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h2>IMPORTANT Information</h2>
+        <p><strong>Save the following ID, you will need it to later check your status!</strong></p>
+        <strong>IDENTIFIER:</strong> <a href="{% url 'victim_request_status' identifier=victim_request.victim.identifier %}">{{ victim_request.victim.identifier }}</a>
+    </div>
+
+    <div class="section">
+        <h2>Victim Information</h2>
+        <p><strong>Name:</strong> {{ victim_request.victim.first_name }} {{ victim_request.victim.last_name }}</p>
+        <p><strong>Gender:</strong> {{ victim_request.victim.gender }}</p>
+        <p><strong>Contact Phone:</strong> {{ victim_request.victim.contact_phone }}</p>
+        <p><strong>Contact Email:</strong> {{ victim_request.victim.contact_email }}</p>
+        <p><strong>Residence:</strong> {{ victim_request.victim.residence_street }}, {{ victim_request.victim.residence_city }}, {{ victim_request.victim.residence_country }}</p>
+    </div>
+
+    <div class="section">
+        <h2>Victim Request Details</h2>
+        <p><strong>Status:</strong> {{ victim_request.status }}</p>
+        <p><strong>Date for Shelter:</strong> {{ victim_request.date_for_shelter }}</p>
+        <p><strong>Reason for Shelter Request:</strong> {{ victim_request.reason_for_request }}</p>
+        <p><strong>Discharge Date:</strong> {{ victim_request.discharge_date }}</p>
+        <p><strong>Coordinator:</strong> {{ victim_request.coordinator }}</p>
+        <p><strong>Additional Shelter Requests:</strong> {{ victim_request.additional_shelter_requests }}</p>
+        <p><strong>Notes:</strong> {{ victim_request.notes }}</p>
+    </div>
+
+    <div class="section">
+        <h2>Shelter Provider Information</h2>
+        {% if victim_request.shelter_provider %}
+            <p><strong>Provider Name:</strong> {{ victim_request.shelter_provider.display_name }}</p>
+            <p><strong>Contact Address:</strong> {{ victim_request.shelter_provider.contact_address }}</p>
+            <p><strong>Contact Phone:</strong> {{ victim_request.shelter_provider.contact_phone }}</p>
+            <p><strong>Contact Email:</strong> {{ victim_request.shelter_provider.contact_email }}</p>
+        {% else %}
+            <p>No shelter provider assigned.</p>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <h2>Shelter Request Offers</h2>
+        {% if shelter_offers %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reference Number</th>
+                        <th>Shelter Provider</th>
+                        <th>Shelter Location</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>DateTime of Offer</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for offer in shelter_offers %}
+                        <tr>
+                            <td>{{ offer.reference_number }}</td>
+                            <td>{{ offer.shelter_provider.display_name }}</td>
+                            <td>{{ offer.shelter_location }}</td>
+                            <td>{{ offer.price }}</td>
+                            <td>{{ offer.status }}</td>
+                            <td>{{ offer.datetime_of_offer }}</td>
+                            <td>{{ offer.notes }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No shelter offers available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

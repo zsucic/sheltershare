@@ -54,12 +54,15 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .biglogo{
+        margin:50px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="form-group">
-            <img src="{% static 'shshapp/logo.png' %}">
+            <img class="biglogo" src="{% static 'shshapp/logo.png' %}">
 
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
@@ -77,11 +80,44 @@
             </form>
         </div>
     </div>
-    <div class="bottom-links" style="text-align: center; margin-top: 20px;">
+
+    <div class="container">
+        <div class="form-group">
+
+            <h3>Check your request status:</h3>
+            <form id="request-status-form" method="get">
+                {% csrf_token %}
+                <div>
+                    <label for="identifier">Identifier:</label>
+                    <input type="text" id="identifier" name="identifier" required />
+                </div>
+
+                <div class="centered">
+                    <input type="submit" id="get_victim_request_status" value="GET" />
+                </div>
+            </form>
+        </div>
+    </div>
+        <div class="bottom-links" style="text-align: center; margin-top: 20px;">
         <p>
             <a href="{% url 'register_victim' %}">Register as a Victim</a> |
             <a href="{% url 'register_shelter_provider' %}">Register as a Shelter Provider</a>
         </p>
     </div>
+    <script>
+        document.getElementById('request-status-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const identifier = document.getElementById('identifier').value.trim();
+
+            if (identifier) {
+                // Construct the URL dynamically
+
+                // Redirect to the constructed URL
+                window.location.href = 'victim_request_status/'+identifier+'/';
+            } else {
+                alert('Please enter a valid identifier.');
+            }
+        });
+    </script>
 </body>
 </html>

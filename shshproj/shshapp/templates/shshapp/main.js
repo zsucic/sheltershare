@@ -54,7 +54,6 @@ function updateVictimVisit(pk) {
         }
 
         row.querySelector(`td[name='pvtable_edd']`).textContent = data.discharge_date;
-        row.querySelector(`td[name='pvtable_location']`).textContent = data.ward;
         row.querySelector(`td[name='pvtable_age']`).textContent = data.victim_age;
         document.getElementById("victim_age").value = data.victim_age;
         //row.querySelector(`td[name='pvtable_shelter_requests']`).textContent = data.shelter_request_type.join(", ");
@@ -156,7 +155,6 @@ function updateVictimVisit(pk) {
         locationCell.setAttribute("data-label", "Location");
         locationCell.setAttribute("id",  "pvtable_location_"+ data.victim_request_id);
         locationCell.setAttribute("name", "pvtable_location");
-        locationCell.textContent = data.ward;
         newRow.appendChild(locationCell);
 
         // Shelter type cell
@@ -479,11 +477,11 @@ function openModal(pk,modalName=null) {
         document.getElementById("coordinator").value = data.coordinator;
 
         document.getElementById("notes").value = data.notes;
-        document.getElementById("reason_for_visit").value = data.reason_for_visit;
+        document.getElementById("reason_for_request").value = data.reason_for_request;
         document.getElementById("status").value = data.status;
         document.getElementById("newVictimStatus").value = data.status;
 
-        document.getElementById("date_of_visit").value = data.date_of_visit;
+        document.getElementById("date_for_shelter").value = data.date_for_shelter;
         var shelter_request_types = document.getElementsByName("shelter_request_type");
         for (var i = 0; i < shelter_request_types.length; i++) {
             if (data.shelter_request_type.indexOf(shelter_request_types[i].value) > -1) {

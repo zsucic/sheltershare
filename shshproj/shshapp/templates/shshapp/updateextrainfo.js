@@ -2,9 +2,9 @@ function updateExtraInfo(setStatus="") {
     var formData = new FormData();
     formData.append("victim_request_id", document.getElementById("victim_request_id").value);
     formData.append("notes", document.getElementById("notes").value);
-    formData.append("reason_for_visit", document.getElementById("reason_for_visit").value);
+    formData.append("reason_for_request", document.getElementById("reason_for_request").value);
 
-    formData.append("date_of_visit", document.getElementById("date_of_visit").value);
+    formData.append("date_for_shelter", document.getElementById("date_for_shelter").value);
     if(setStatus.length===3)
     {
         formData.append("status", setStatus);

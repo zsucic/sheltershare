@@ -70,7 +70,6 @@
             <td data-label="Victim" id="pvtable_victim_{{ victim_request.id }}" name="pvtable_victim" onclick="openModal('{{ victim_request.id }}')">{{ victim_request.victim }}</td>
             {% endif %}
             <td data-label="EDD" id="pvtable_edd_{{ victim_request.id }}" name="pvtable_edd" onclick="openModal('{{ victim_request.id }}')">{{ victim_request.discharge_date|date:"Y-m-d" }}</td>
-            <td data-label="Location" id="pvtable_location_{{ victim_request.id }}" name="pvtable_location" onclick="openModal('{{ victim_request.id }}')">{% if victim_request.ward %} {{ victim_request.ward }} {% endif %}</td>
             <td data-label="Shelter Type" id="pvtable_shelter_requests_{{ victim_request.id }}" name="pvtable_shelter_requests" onclick="openModal('{{ victim_request.id }}')">{% for shelter_request_type in shelter_request_types %}
                 {% if shelter_request_type in victim_request.shelter_request_types.all %}
                 <span class="label label-light" title="{{ shelter_request_type.description }}">{{ shelter_request_type.code }}</span>{% endif %}

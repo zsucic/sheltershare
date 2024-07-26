@@ -90,10 +90,10 @@ def get_victim_request(request, pk):
         "coordinator": victim_request.coordinator,
 
         'notes': victim_request.notes,
-        "reason_for_visit": victim_request.reason_for_visit,
+        "reason_for_request": victim_request.reason_for_request,
         "status": victim_request.status.code,
         "status_description": victim_request.status.description,
-        "date_of_visit": victim_request.date_of_visit,
+        "date_for_shelter": victim_request.date_for_shelter,
         "shelter_request_type": list(victim_request.shelter_request_types.values_list('code', flat=True)),
         "additional_shelter_requests": victim_request.additional_shelter_requests,
         "assessment": None,
@@ -313,9 +313,8 @@ def generate(request):
     victim_request = VictimRequest.objects.create(
         victim=victim,
         status=victim_visit_status,
-        date_of_visit=datetime.datetime.today() - datetime.timedelta(days=fake.random.randint(0,10)),
+        date_for_shelter=datetime.datetime.today() - datetime.timedelta(days=fake.random.randint(0,10)),
         discharge_date=datetime.datetime.today(),
-        hospital=fake.company(),
 
     )
     victim_request.shelter_request_types.set(shelter_request_types)
@@ -331,7 +330,8 @@ def register_victim(request):
 
     if request.method == 'POST':
         victim = create_and_save_victim(request)
-        create_and_save_victim_request(request, victim)
+        victim_request=create_and_save_victim_request(request, victim)
+        return redirect(victim_request_status,identifier=victim.identifier)
 
     context = {
         'genders': genders,
@@ -346,16 +346,19 @@ def create_and_save_victim_request(request, victim):
     victim_request = VictimRequest.objects.create(
         victim=victim,
         status=victim_visit_status,
-        date_of_visit=datetime.datetime.today() - datetime.timedelta(days=fake.random.randint(0, 10)),
+        reason_for_request=request.POST.get('victim.reason_for_request'),
+        date_for_shelter=datetime.datetime.today() - datetime.timedelta(days=fake.random.randint(0, 10)),
         discharge_date=datetime.datetime.today(),
 
     )
     victim_request.shelter_request_types.set(shelter_request_types)
     victim_request.save()
+    return victim_request
 
 
 def create_and_save_victim(request):
     identifier = request.POST.get('victim.identifier')
+
     first_name = request.POST.get('victim.first_name')
     last_name = request.POST.get('victim.last_name')
     date_of_birth = request.POST.get('victim.date_of_birth')
@@ -370,22 +373,37 @@ def create_and_save_victim(request):
     contact_email = request.POST.get('victim.contact_email')
     #verified_by = request.POST.get('victim.verified_by') #we don't set verified_by until coordinator actually verifies...
     gender = VictimGender.objects.get(id=gender_code) if gender_code else None
-    victim = Victim(
-        identifier=identifier,
-        first_name=first_name,
-        last_name=last_name,
-        date_of_birth=date_of_birth,
-        gender=gender,
-        residence_region=residence_region,
-        residence_postcode=residence_postcode,
-        residence_street=residence_street,
-        residence_number=residence_number,
-        residence_city=residence_city,
-        residence_country=residence_country,
-        contact_phone=contact_phone,
-        contact_email=contact_email,
-        #verified_by=verified_by
-    )
+    if not identifier:
+        victim = Victim(
+            first_name=first_name,
+            last_name=last_name,
+            date_of_birth=date_of_birth,
+            gender=gender,
+            residence_region=residence_region,
+            residence_postcode=residence_postcode,
+            residence_street=residence_street,
+            residence_number=residence_number,
+            residence_city=residence_city,
+            residence_country=residence_country,
+            contact_phone=contact_phone,
+            contact_email=contact_email,
+        )
+    else:
+        victim = Victim(
+            identifier=identifier,
+            first_name=first_name,
+            last_name=last_name,
+            date_of_birth=date_of_birth,
+            gender=gender,
+            residence_region=residence_region,
+            residence_postcode=residence_postcode,
+            residence_street=residence_street,
+            residence_number=residence_number,
+            residence_city=residence_city,
+            residence_country=residence_country,
+            contact_phone=contact_phone,
+            contact_email=contact_email,
+        )
     victim.save()
     return victim
 
@@ -500,9 +518,6 @@ def update_request_discharge(request):
             victim_request_id = request.POST.get('victim_request_id')
             victim_request = VictimRequest.objects.get(id=victim_request_id)
             victim_request.discharge_date = request.POST.get('discharge_date')
-            victim_request.hospital = request.POST.get('hospital')
-            victim_request.ward = request.POST.get('ward')
-            victim_request.consultant = request.POST.get('consultant')
             victim_request.coordinator = request.POST.get('coordinator')
             victim_request.verified_by = request.user.username
             victim_request.save()
@@ -519,9 +534,9 @@ def update_request_shelter(request):
         try:
             victim_request_id = request.POST.get("victim_request_id")
             notes = request.POST.get("notes")
-            reason_for_visit = request.POST.get("reason_for_visit")
+            reason_for_request = request.POST.get("reason_for_request")
             status = request.POST.get("status")
-            date_of_visit = request.POST.get("date_of_visit")
+            date_for_shelter = request.POST.get("date_for_shelter")
             discharge_to = request.POST.get("discharge_to")
             discharge_region = request.POST.get("discharge_region")
             shelter_request_type_codes = request.POST.getlist("shelter_request_types")
@@ -531,10 +546,10 @@ def update_request_shelter(request):
             # update the VictimRequest object with new data
             victim_request = VictimRequest.objects.get(id=victim_request_id)
             victim_request.notes = notes
-            victim_request.reason_for_visit = reason_for_visit
+            victim_request.reason_for_request = reason_for_request
             if status in list(VictimRequestStatus.objects.all().values_list("code", flat=True)):
                 victim_request.status = VictimRequestStatus.objects.filter(code=status).first()
-            victim_request.date_of_visit = date_of_visit
+            victim_request.date_for_shelter = date_for_shelter
             victim_request.discharge_to = discharge_to
             victim_request.discharge_region = discharge_region
             victim_request.shelter_request_types.set(shelter_request_types)
@@ -587,7 +602,7 @@ def accept_offers(request):
                     offer.status = ShelterOfferStatus.objects.get(code="Rejected")
                 offer.save()
             victim_request.status=VictimRequestStatus.objects.get(code=pv_status)
-            victim_request.selected_providers = request.user.username
+            victim_request.provider_accepted_by = request.user.username
             victim_request.save()
             return JsonResponse({'status': 'success'})
         except Exception as ex:
@@ -760,3 +775,16 @@ def submit_answers(request):
     else:
         #return JsonResponse({'success': False, 'error': 'Invalid request method'})
         return JsonResponse({'status': 'only POST can be used to update victim data!'})
+def victim_request_status(request, identifier):
+    # Fetch the victim request
+    victim=get_object_or_404(Victim,identifier=identifier)
+    victim_request = get_object_or_404(VictimRequest, victim=victim)
+
+    # Fetch related shelter request offers
+    shelter_offers = ShelterRequestOffer.objects.filter(victim_request=victim_request)
+
+    context = {
+        'victim_request': victim_request,
+        'shelter_offers': shelter_offers,
+    }
+    return render(request, 'shshapp/requestStatus.html', context)

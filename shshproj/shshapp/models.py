@@ -27,7 +27,7 @@ class VictimGender(models.Model):
 
 
 class Victim(models.Model):
-    identifier = models.CharField(max_length=100, blank=True, null=True)
+    identifier = models.CharField(max_length=100, blank=False, null=False, unique=True, default=uuid.uuid4)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -66,23 +66,16 @@ class ShelterRequestType(models.Model):
         return self.description
 
 
-class GroupStatusMapping(models.Model):
-    status = models.ForeignKey(VictimRequestStatus, on_delete=models.SET_NULL, null=True, blank=True)
-    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True)
-
-    def __str__(self):
-        return self.group.name + " - " + self.status.description
 
 
 
 class VictimRequest(models.Model):
     victim = models.ForeignKey(Victim, on_delete=models.CASCADE)
-    reason_for_visit = models.CharField(max_length=200, blank=True, null=True)
+    reason_for_request = models.CharField(max_length=200, blank=True, null=True)
 
     status = models.ForeignKey(VictimRequestStatus, on_delete=models.SET_NULL, null=True, blank=True)
-    date_of_visit = models.DateField()
+    date_for_shelter = models.DateField()
     discharge_date = models.DateField()
-    hospital = models.CharField(max_length=200, null=True, blank=True)
     coordinator = models.CharField(max_length=200, blank=True, null=True)
 
 
@@ -96,7 +89,7 @@ class VictimRequest(models.Model):
 
     shelter_provider = models.ForeignKey(ShelterProvider, on_delete=models.SET_NULL, null=True, blank=True)
     verified_by = models.CharField(max_length=200, null=True, blank=True, default=None)
-    selected_providers = models.CharField(max_length=200, null=True, blank=True ,default=None)
+    provider_accepted_by = models.CharField(max_length=200, null=True, blank=True, default=None)
     discharged_by = models.CharField(max_length=200, null=True, blank=True ,default=None)
     discharge_shelter_request_types = models.CharField(max_length=500, null=True, blank=True, default=None)
     last_update = models.DateTimeField(auto_now_add=True)
@@ -137,20 +130,11 @@ class Answer(models.Model):
     acknowledged = models.BooleanField(default=False)
     last_updated = models.DateTimeField(blank=False, null=False, auto_now_add=True)
 
-# class Question(models.Model):
-#     text= models.CharField(max_length=200, blank=True, null=True)
-#
-# class AssessmentType(models.Model):
-#     code = models.CharField(max_length=30)
-#     description = models.CharField(max_length=250)
-#     questions=models.ManyToManyField(Question)
-#
-# class Answer(models.Model):
-#     value=models.CharField(max_length=200, blank=True, null=True)
-#     question=models.ForeignKey(AssessmentType, on_delete=models.CASCADE)
-#
-# class Assessment(models.Model):
-#     type= models.ForeignKey(AssessmentType, on_delete=models.CASCADE)
-#     answers=models.ManyToManyField(Answer)
 
 
+class GroupStatusMapping(models.Model):
+    status = models.ForeignKey(VictimRequestStatus, on_delete=models.SET_NULL, null=True, blank=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.group.name + " - " + self.status.description
