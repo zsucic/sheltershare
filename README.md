@@ -1,7 +1,7 @@
 # Project Title
  ShelterShare
 
-![img_9.png](img_9.png)
+![img_9.png](shshproj/shshapp/static/shshapp/img_9.png)
 
 ## Description
 ShelterShare is a Django application designed to connect disaster victims with shelter providers.
@@ -15,34 +15,34 @@ The application aims to streamline the process of finding and offering shelter d
 
 - **User Authentication:** Secure login and logout functionality for users, including shelter providers and victims.
 
-![img.png](img.png)
+![img.png](shshproj/shshapp/static/shshapp/img.png)
 
 - **Shelter Requests:** Register new shelter requests and check status of requests.
 
-![img_1.png](img_1.png)
+![img_1.png](shshproj/shshapp/static/shshapp/img_1.png)
 
 - **Shelter Provider Management:** Register and update shelter provider information.
 
-![img_10.png](img_10.png)
+![img_10.png](shshproj/shshapp/static/shshapp/img_10.png)
 
 - **Request Management:** Submit and track shelter requests from victims, including managing and updating request details.
 
-![img_12.png](img_12.png)
+![img_12.png](shshproj/shshapp/static/shshapp/img_12.png)
 
 
-![img_8.png](img_8.png)
+![img_8.png](shshproj/shshapp/static/shshapp/img_8.png)
 
 - **Questions and Answers:** Handle questions and answers related to victim requests, allowing for better communication and clarity.
 
-![img_5.png](img_5.png)
+![img_5.png](shshproj/shshapp/static/shshapp/img_5.png)
 
 - **Request Status:** Update and view the status of requests and offers.
 
-![img_13.png](img_13.png)
+![img_13.png](shshproj/shshapp/static/shshapp/img_13.png)
 
 **Database Integration:** ShelterShare uses ***InterSystems IRIS*** as its database system.
 
-![img_7.png](img_7.png)
+![img_7.png](shshproj/shshapp/static/shshapp/img_7.png)
 
 These features are designed to ensure an efficient and effective connection between disaster victims and shelter providers.
 
