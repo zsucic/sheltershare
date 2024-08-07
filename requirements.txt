@@ -1,4 +1,4 @@
-Django==5.0.7
+Django==5.0.8
 gunicorn
 uvicorn[standard]
 channels
